@@ -6,7 +6,8 @@ public class Game{
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
 
   public static void main(String[] args) {
-    run();
+    // run();
+    drawText("yoho");
   }
 
   //Display the borders of your screen that will not change.
@@ -16,6 +17,9 @@ public class Game{
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
+  public static void go(int row,int col){
+    System.out.print("\033[" + row + ";" + col + "H");
+  }
 
   //Display a line of text starting at
   //(columns and rows start at 1 (not zero) in the terminal)
@@ -24,6 +28,17 @@ public class Game{
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    go(startRow, startCol);
+    for(int i = 1; i <s.length(); i++)
+    {
+      if(startRow + 1 > WIDTH)
+      {
+        startCol++;
+      }
+      go(startRow++, startCol);
+      System.out.println(s.substring(i-1,i));
+
+    }
   }
 
   /*Use this method to place text on the screen at a particular location.
