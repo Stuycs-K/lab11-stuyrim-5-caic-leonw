@@ -31,21 +31,21 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 
 ### General Stats
 
-| Subclass  | Description |  HP  | Damage Range | Average Elixir Cost | Evolved Buffs |
-| :-------: | :---------: | :--: | :----------: | :-----------------: | :-----------: |
-| Barbarian | A skilled warrior who specializes in melee attacks with the sword. | 30 | 4-15 dmg | 3 elixir, 4 dark elixir | 1.33x HP, always raged, 25% chance to recover 50% of elixir spent after turn. |
-| Wizard | A master of fire magic who uses spells to attack enemies. | 20 | 4-9 dmg; Chance of burn | 3 elixir, 6 dark elixir | 1.5x HP, fire shield with 10 HP that when broken, does 3 dmg to all. |
-| Archer | A master of the bow and arrow. It is said she has never missed a shot. | 24 | 3-9 dmg; Chance of bleed | 3 elixir, 5 dark elixir | 1.25x HP, 30% chance for every arrow to inflict bleed, 2 dark elixir gained after every turn. |
-| PEKKA | A machine made for combat, dealing high damage with its saber. | 40 | x-x dmg | x elixir, x dark elixir | x |
+| Subclass  | Description |  HP  | Damage Range | Average Elixir Cost |
+| :-------: | :---------: | :--: | :----------: | :-----------------: |
+| Barbarian | A skilled warrior who specializes in melee attacks with the sword. | 30 | 4-15 dmg | 2.5 elixir, 5 dark elixir |
+| Wizard | A master of fire magic who uses spells to attack enemies. | 20 | 4-9 dmg; Chance of burn | 2.5 elixir, 6 dark elixir |
+| Archer | A master of the bow and arrow. It is said she has never missed a shot. | 24 | 3-9 dmg; Chance of bleed | 2.5 elixir, 5.5 dark elixir |
+| PEKKA | A machine made for combat, dealing high damage with its saber. | 40 | 10-15 dmg | 2.5 elixir, 5 dark elixir |
 
 ### Barbarian Abilities
 
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
-| Attack | Sword Swing: The barbarian skillfully swings its sword at the opponent, dealing damage. | 4 dmg               | 2 elixir    |
+| Attack | Sword Swing: The barbarian skillfully swings its sword at the opponent, dealing damage. | 4 dmg | 2 elixir |
 | Special | Consecutive Swings: The barbarian launches a series of two attacks on multiple random targets. If it hits the same target consecutively, extra damage is dealt. | 4 dmg (x2); 1.25x dmg each hit if consecutive | 4 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Rage: A rage spell is applied to itself, increasing its damage dealt. | 1.5x dmg | 4 elixir |
+| Self Support | Evolution: The barbarian rages itself up, gaining a stat boost and becoming more resourceful with its elixir. | 1.33x HP, 1.5x dmg from rage (stacks with special), 25% chance to recover 50% of elixir spent after turn. | 6 dark elixir |
 
 ### Wizard Abilities
 
@@ -54,7 +54,7 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Attack | Fireball: The wizard sends a flaming fireball at the target, dealing high fire damage. | 6 dmg | 2 elixir |
 | Special | Flamethrower: The wizard shoots flames from its hands, damaging all opponents and leaving them with a chance of burn. | 4 dmg to each enemy; 10% chance to burn, dealing 2 dmg at the end of each turn. | 6 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Rage: A rage spell is applied to itself, increasing its damage dealt. | 1.5x dmg | 4 elixir |
+| Self Support | Evolution: The wizard cloaks itself in a fire shield, which explodes on all enemies upon destruction. | 1.5x HP, fire shield with 10 HP that when broken, does 3 dmg to all. | 6 dark elixir |
 
 ### Archer Abilities
 
@@ -63,13 +63,13 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Attack | Tracking Shot: The archer shoots an arrow at the selected target which never misses. | 3 dmg | 2 elixir |
 | Special | Long Distance Shot: The archer fires an arrow randomly at the opponents. If the opponent is not directly in front of the archer, the arrow deals more damage and has a chance to inflict the bleeding effect. | 3 dmg if opponent is in front of the archer. 2x dmg if not in front. 50% chance to bleed, dealing 2 dmg at the end of each turn. | 5 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Rage: A rage spell is applied to itself, increasing its damage dealt. | 1.5x dmg | 4 elixir |
+| Self Support | Evolution: The archer uses ragged tips for its arrows and increases its dark energy supply. | 1.25x HP, 30% chance for every arrow to inflict bleed, 2 dark elixir gained after every turn. | 6 dark elixir |
 
 ### PEKKA Abilities
 
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
-| Attack | Saber Stab: The PEKKA swings its saber at the enemy, dealing high damage. However, this can only be used every other turn. | 12 dmg | 2 elixir |
-| Special | 
+| Attack | Saber Swing: The PEKKA swings its saber at the enemy, dealing high damage. However, this can only be used every other turn. | 12 dmg | 2 elixir |
+| Special | Limb Breaker: The PEKKA swings at the opponents limbs, paralyzing them the next turn. | 10 dmg | 4 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Rage: A rage spell is applied to itself, increasing its damage dealt. | 1.5x dmg | 4 elixir |
+| Self Support | Evolution: The PEKKA evolves, gaining a stat boost. Also, after every attack, the PEKKA heals two HP. | 1.25x dmg, 1.25x HP, +2 HP after every attack. | 6 dark elixir |
