@@ -5,11 +5,6 @@ public class Game{
   private static final int BORDER_COLOR = Text.BLACK;
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
 
-  public static void main(String[] args) {
-    // run();
-    drawText("yoho");
-  }
-
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
@@ -17,28 +12,13 @@ public class Game{
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
-  public static void go(int row,int col){
-    System.out.print("\033[" + row + ";" + col + "H");
-  }
 
   //Display a line of text starting at
   //(columns and rows start at 1 (not zero) in the terminal)
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-    go(startRow, startCol);
-    for(int i = 1; i <s.length(); i++)
-    {
-      if(startRow + 1 > WIDTH)
-      {
-        startCol++;
-      }
-      go(startRow++, startCol);
-      System.out.println(s.substring(i-1,i));
-
-    }
+    Text.go(startRow, startCol);
+    System.out.println(s);
   }
 
   /*Use this method to place text on the screen at a particular location.
@@ -52,9 +32,7 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
   }
 
 
@@ -62,9 +40,9 @@ public class Game{
 
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
-    public static Adventurer createRandomAdventurer(){
-      return new CodeWarrior("Bob"+(int)(Math.random()*100));
-    }
+    // public static Adventurer createRandomAdventurer(){
+    //   return new CodeWarrior("Bob"+(int)(Math.random()*100));
+    // }
 
     /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
     *Should include Name HP and Special on 3 separate lines.
@@ -254,4 +232,11 @@ public class Game{
     //After quit reset things:
     quit();
   }
+
+  public static void main (String[] args) {
+
+    drawText("abra kadabra", 2, 2);
+
+  }
+
 }
