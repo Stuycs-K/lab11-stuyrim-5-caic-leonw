@@ -1,6 +1,6 @@
 import java.util.Random;
 public class Archer extends Adventurer{
-  
+
   public void Tick()
   {
 	if(evoDuration > 0)
@@ -56,38 +56,32 @@ public class Archer extends Adventurer{
 
   public String attack(Adventurer other)
   {
-	return("");
+	   return("");
   }
 
   public String support(Adventurer other)
   {
-	return("");
+	   return("");
   }
 
   public String support()
   {
-	return("");
+	   return("");
   }
 
   public String specialAttack(Adventurer other)
   {
-	return("");
+	   return("");
   }
 
   public void applyDamage(int amount){
 	this.HP -= amount;
   }
 
-  public Archer(){
-	super("");
-  }
-
-  public Archer(String name){
-	super(name, 10);
-  }
-
-  public Archer(String name, int hp){
-	super(name,hp);
+  public Archer(String name, int hp, int slot){
+  	super(name,hp, slot);
+    specialCost = 5;
+    supportCost = 6;
   }
 
   //toString method

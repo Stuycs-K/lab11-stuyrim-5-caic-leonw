@@ -77,16 +77,10 @@ public class Barbarian extends Adventurer{
     this.HP -= amount;
   }
 
-  public Barbarian(){
-    super("");
-  }
-
-  public Barbarian(String name){
-    super(name, 10);
-  }
-
-  public Barbarian(String name, int hp){
-    super(name,hp);
+  public Barbarian(String name, int hp, int slot){
+	   super(name,hp, slot);
+     specialCost = 4;
+     supportCost = 6;
   }
 
   //toString method

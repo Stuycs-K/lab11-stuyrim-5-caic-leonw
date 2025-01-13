@@ -3,6 +3,12 @@ public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
   private int evoDuration;
+  private int slot;
+  public int attackCost;
+  public int specialCost;
+  public int supportCost;
+  public int healCost;
+
   enum Effect
   {
     NONE,
@@ -72,10 +78,17 @@ public abstract class Adventurer{
     this(name, 10);
   }
 
-  public Adventurer(String name, int hp){
+  public Adventurer(String name){
+    this(name, 10, 0);
+  }
+
+  public Adventurer(String name, int hp, int slot){
     this.name = name;
     this.HP = hp;
+    this.slot = slot;
     this.maxHP = hp;
+    healCost = 3;
+    attackCost = 2;
   }
 
   //toString method

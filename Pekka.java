@@ -77,16 +77,10 @@ public class Pekka extends Adventurer{
 	this.HP -= amount;
   }
 
-  public Pekka(){
-	super("");
-  }
-
-  public Pekka(String name){
-	super(name, 10);
-  }
-
-  public Pekka(String name, int hp){
-	super(name,hp);
+  public Pekka(String name, int hp, int slot){
+	   super(name,hp, slot);
+     specialCost = 4;
+     supportCost = 6;
   }
 
   //toString method

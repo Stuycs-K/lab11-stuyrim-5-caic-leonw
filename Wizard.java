@@ -78,16 +78,10 @@ public class Wizard extends Adventurer{
     this.HP -= amount;
   }
 
-  public Wizard(){
-    super("");
-  }
-
-  public Wizard(String name){
-    super(name, 10);
-  }
-
-  public Wizard(String name, int hp){
-    super(name,hp);
+  public Wizard(String name, int hp, int slot){
+	  super(name,hp, slot);
+    specialCost = 6;
+    supportCost = 6;
   }
 
   //toString method
