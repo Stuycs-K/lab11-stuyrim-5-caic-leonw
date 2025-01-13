@@ -23,15 +23,25 @@ public abstract class Adventurer{
         break;
       case Effect.BLEED:
         break;
-      default;
+      default:
         break;
     }
+  }
+
+  //concrete method written using abstract methods.
+  //refill special resource by amount, but only up to at most getSpecialMax()
+  public int restoreSpecial(int n){
+      if( n > getSpecialMax() - getSpecial()){
+              n = getSpecialMax() - getSpecial();
+      }
+      setSpecial(getSpecial()+n);
+      return n;
   }
 
   public void Evolve(int duration)
   {
     evoDuration = duration;
-    System.out.println(getName() + " has evolved.")
+    System.out.println(getName() + " has evolved.");
   }
 
   public abstract String getSpecialName();
