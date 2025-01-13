@@ -32,7 +32,12 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-
+    if (text.length() < width) {
+      drawText(text, row, col);
+    } else {
+      drawText(text.substring(0, width), row, col);
+      TextBox(row+1, col, width, height-1, text.substring(width));
+    }
   }
 
 
@@ -235,7 +240,13 @@ public class Game{
 
   public static void main (String[] args) {
 
-    drawText("abra kadabra", 2, 2);
+    Text.hideCursor();
+    Text.clear();
+
+    TextBox(1, 1, 10, 5, "hello world this is cody cai back at it again");
+
+    Text.reset();
+    Text.showCursor();
 
   }
 
