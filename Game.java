@@ -36,34 +36,35 @@ public class Game{
       drawText(text, row, col);
     } else {
       drawText(text.substring(0, width), row, col);
-      TextBox(row+1, col, width, height-1, text.substring(width));
+      TextBox(row+1, col, width, height, text.substring(width));
+    }
+    for (int i = 0; i < (height - (text.length() / width)); i++) {
+      for (int j = 0; j < width - text.length(); j++) {
+        drawText("e", row+i, col+j);
+      }
     }
   }
 
+  //return a random adventurer (choose between all available subclasses)
+  //feel free to overload this method to allow specific names/stats.
+  // public static Adventurer createRandomAdventurer(){
+  //   return new CodeWarrior("Bob"+(int)(Math.random()*100));
+  // }
 
-
-
-    //return a random adventurer (choose between all available subclasses)
-    //feel free to overload this method to allow specific names/stats.
-    // public static Adventurer createRandomAdventurer(){
-    //   return new CodeWarrior("Bob"+(int)(Math.random()*100));
-    // }
-
-    /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
-    *Should include Name HP and Special on 3 separate lines.
-    *Note there is one blank row reserved for your use if you choose.
-    *Format:
-    *Bob          Amy        Jun
-    *HP: 10       HP: 15     HP:19
-    *Caffeine: 20 Mana: 10   Snark: 1
-    * ***THIS ROW INTENTIONALLY LEFT BLANK***
-    */
-    public static void drawParty(ArrayList<Adventurer> party,int startRow){
-
-      /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-      //YOUR CODE HERE
-      /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-    }
+  /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
+  *Should include Name HP and Special on 3 separate lines.
+  *Note there is one blank row reserved for your use if you choose.
+  *Format:
+  *Bob          Amy        Jun
+  *HP: 10       HP: 15     HP:19
+  *Caffeine: 20 Mana: 10   Snark: 1
+  * ***THIS ROW INTENTIONALLY LEFT BLANK***
+  */
+  public static void drawParty(ArrayList<Adventurer> party,int startRow){
+    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+    //YOUR CODE HERE
+    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+  }
 
 
   //Use this to create a colorized number string based on the % compared to the max value.
@@ -243,7 +244,7 @@ public class Game{
     Text.hideCursor();
     Text.clear();
 
-    TextBox(1, 1, 10, 5, "hello world this is cody cai back at it again");
+    TextBox(1, 1, 15, 5, "hello world this is cody cai back at it again");
 
     Text.reset();
     Text.showCursor();
