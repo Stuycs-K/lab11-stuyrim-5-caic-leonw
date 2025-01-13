@@ -8,6 +8,7 @@ public abstract class Adventurer{
   public int specialCost;
   public int supportCost;
   public int healCost;
+  public Adventurer[] adventurers;
 
   enum Effect
   {
@@ -52,11 +53,7 @@ public abstract class Adventurer{
 
   public abstract String getSpecialName();
 
-  public abstract int getSpecial();
-
-  public abstract int getSpecialMax();
-
-  public abstract void setSpecial(int n);
+  public abstract String getAttackName();
 
   public abstract String attack(Adventurer other);
 
@@ -70,25 +67,14 @@ public abstract class Adventurer{
     this.HP -= amount;
   }
 
-  public Adventurer(){
-    this("");
-  }
-
-  public Adventurer(String name){
-    this(name, 10);
-  }
-
-  public Adventurer(String name){
-    this(name, 10, 0);
-  }
-
-  public Adventurer(String name, int hp, int slot){
+  public Adventurer(String name, int hp, int slot, Adventurer[] adventurers){
     this.name = name;
     this.HP = hp;
     this.slot = slot;
     this.maxHP = hp;
     healCost = 3;
     attackCost = 2;
+    this.adventurers  = adventurers;
   }
 
   //toString method
@@ -112,7 +98,10 @@ public abstract class Adventurer{
   public int getEvoDuration(){
     return evoDuration;
   }
-
+  public int getSlot()
+  {
+    return slot;
+  }
   private void setmaxHP(int newMax){
     maxHP = newMax;
   }

@@ -36,26 +36,17 @@ public class Archer extends Adventurer{
 
   public String getSpecialName()
   {
-	return("");
+    return("");
   }
 
-  public int getSpecial()
+  public String getAttackName();
   {
-	return(1);
-  }
-
-  public int getSpecialMax()
-  {
-	return(1);
-  }
-
-  public void setSpecial(int n)
-  {
-
+    return ("")
   }
 
   public String attack(Adventurer other)
   {
+
 	   return("");
   }
 
@@ -71,15 +62,19 @@ public class Archer extends Adventurer{
 
   public String specialAttack(Adventurer other)
   {
-	   return("");
+    System.out.println(getName() " used " + getSpecialName() + " on " other.getName() + "!")
+    if (other.getSlot() != this.getSlot())
+    {
+
+    }
   }
 
   public void applyDamage(int amount){
 	this.HP -= amount;
   }
 
-  public Archer(String name, int hp, int slot){
-  	super(name,hp, slot);
+  public Archer(String name, int hp, int slot, Adventurer[] adventurers){
+	  super(name,hp, slot, adventurers);
     specialCost = 5;
     supportCost = 6;
   }
