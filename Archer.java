@@ -1,13 +1,6 @@
 import java.util.Random;
 public class Archer extends Adventurer{
-  enum Effect
-  {
-	NONE,
-	BURN,
-	BLEED
-  }
-  public Effect state = Effect.NONE;
-
+  
   public void Tick()
   {
 	if(evoDuration > 0)

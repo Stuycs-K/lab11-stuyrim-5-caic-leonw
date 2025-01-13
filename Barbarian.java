@@ -1,16 +1,5 @@
 import java.util.Random;
 public class Barbarian extends Adventurer{
-  private String name;
-  private int HP,maxHP;
-  private int evoDuration;
-  enum Effect
-  {
-    NONE,
-    BURN,
-    BLEED
-  }
-  public Effect state = Effect.NONE;
-
   public void Tick()
   {
     if(evoDuration > 0)
