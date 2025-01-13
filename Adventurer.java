@@ -55,13 +55,13 @@ public abstract class Adventurer{
 
   public abstract String getAttackName();
 
-  public abstract String attack(Adventurer other);
+  public abstract String attack(int other);
 
-  public abstract String support(Adventurer other);
+  public abstract String support(int other);
 
   public abstract String support();
 
-  public abstract String specialAttack(Adventurer other);
+  public abstract String specialAttack(int other);
 
   public void applyDamage(int amount){
     this.HP -= amount;

@@ -44,12 +44,12 @@ public class Pekka extends Adventurer{
   }
 
 
-  public String attack(Adventurer other)
+  public String attack(int  other)
   {
 	return("");
   }
 
-  public String support(Adventurer other)
+  public String support(int other)
   {
 	return("");
   }
@@ -59,7 +59,7 @@ public class Pekka extends Adventurer{
 	return("");
   }
 
-  public String specialAttack(Adventurer other)
+  public String specialAttack(int  other)
   {
 	return("");
   }
