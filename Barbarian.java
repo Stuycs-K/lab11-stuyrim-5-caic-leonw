@@ -38,27 +38,18 @@ public class Barbarian extends Adventurer{
     return("");
   }
 
-  public int getSpecial()
+  public String getAttackName();
   {
-    return(1);
+    return ("")
   }
 
-  public int getSpecialMax()
-  {
-    return(1);
-  }
 
-  public void setSpecial(int n)
-  {
-
-  }
-
-  public String attack(Adventurer other)
+  public String attack(int  other)
   {
     return("");
   }
 
-  public String support(Adventurer other)
+  public String support(int  other)
   {
     return("");
   }
@@ -68,7 +59,7 @@ public class Barbarian extends Adventurer{
     return("");
   }
 
-  public String specialAttack(Adventurer other)
+  public String specialAttack(int other)
   {
     return("");
   }
@@ -77,8 +68,8 @@ public class Barbarian extends Adventurer{
     this.HP -= amount;
   }
 
-  public Barbarian(String name, int hp, int slot){
-	   super(name,hp, slot);
+  public Barbarian(String name, int hp, int slot, Adventurer[] adventurers){
+	  super(name,hp, slot, adventurers);
      specialCost = 4;
      supportCost = 6;
   }

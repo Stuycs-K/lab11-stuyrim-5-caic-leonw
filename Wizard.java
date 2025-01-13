@@ -39,27 +39,18 @@ public class Wizard extends Adventurer{
     return("");
   }
 
-  public int getSpecial()
+  public String getAttackName();
   {
-    return(1);
+    return ("")
   }
 
-  public int getSpecialMax()
-  {
-    return(1);
-  }
 
-  public void setSpecial(int n)
-  {
-
-  }
-
-  public String attack(Adventurer other)
+  public String attack(int other)
   {
     return("");
   }
 
-  public String support(Adventurer other)
+  public String support(int other)
   {
     return("");
   }
@@ -69,7 +60,7 @@ public class Wizard extends Adventurer{
     return("");
   }
 
-  public String specialAttack(Adventurer other)
+  public String specialAttack(int other)
   {
     return("");
   }
@@ -78,8 +69,8 @@ public class Wizard extends Adventurer{
     this.HP -= amount;
   }
 
-  public Wizard(String name, int hp, int slot){
-	  super(name,hp, slot);
+  public Wizard(String name, int hp, int slot, Adventurer[] adventurers){
+	  super(name,hp, slot, adventurers);
     specialCost = 6;
     supportCost = 6;
   }
