@@ -1,8 +1,5 @@
 import java.util.Random;
 public class Archer extends Adventurer{
-  private String name;
-  private int HP,maxHP;
-  private int evoDuration;
   enum Effect
   {
 	NONE,
