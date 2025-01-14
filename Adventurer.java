@@ -2,7 +2,7 @@ import java.util.Random;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
-  private int evoDuration;
+  public int evoDuration;
   private int slot;
   public int attackCost;
   public int specialCost;
@@ -35,15 +35,6 @@ public abstract class Adventurer{
     }
   }
 
-  //concrete method written using abstract methods.
-  //refill special resource by amount, but only up to at most getSpecialMax()
-  public int restoreSpecial(int n){
-      if( n > getSpecialMax() - getSpecial()){
-              n = getSpecialMax() - getSpecial();
-      }
-      setSpecial(getSpecial()+n);
-      return n;
-  }
 
   public void Evolve(int duration)
   {
@@ -106,7 +97,7 @@ public abstract class Adventurer{
     maxHP = newMax;
   }
   //Set Methods
-  private void setHP(int health){
+  protected void setHP(int health){
     this.HP = health;
   }
 
