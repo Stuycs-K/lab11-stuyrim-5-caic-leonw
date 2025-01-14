@@ -34,14 +34,10 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     if (text.length() < width) {
       drawText(text, row, col);
+      TextBox(row+1, col, width, height-1, " ");
     } else {
       drawText(text.substring(0, width), row, col);
-      TextBox(row+1, col, width, height, text.substring(width));
-    }
-    for (int i = 0; i < (height - (text.length() / width)); i++) {
-      for (int j = 0; j < width - text.length(); j++) {
-        drawText("e", row+i, col+j);
-      }
+      TextBox(row+1, col, width, height-1, text.substring(width));
     }
   }
 
