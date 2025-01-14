@@ -20,13 +20,6 @@ public class Wizard extends Adventurer{
 
   //concrete method written using abstract methods.
   //refill special resource by amount, but only up to at most getSpecialMax()
-  public int restoreSpecial(int n){
-      if( n > getSpecialMax() - getSpecial()){
-              n = getSpecialMax() - getSpecial();
-      }
-      setSpecial(getSpecial()+n);
-      return n;
-  }
 
   public void Evolve(int duration)
   {
@@ -39,9 +32,9 @@ public class Wizard extends Adventurer{
     return("");
   }
 
-  public String getAttackName();
+  public String getAttackName()
   {
-    return ("")
+    return ("");
   }
 
 
@@ -64,10 +57,12 @@ public class Wizard extends Adventurer{
   {
     return("");
   }
-
-  public void applyDamage(int amount){
-    this.HP -= amount;
+  public void applyDamage(int amount)
+  {
+    setHP(getHP() - amount);
   }
+
+
 
   public Wizard(String name, int hp, int slot, Adventurer[] adventurers){
 	  super(name,hp, slot, adventurers);
@@ -75,37 +70,4 @@ public class Wizard extends Adventurer{
     supportCost = 6;
   }
 
-  //toString method
-  public String toString(){
-    return this.getName();
-  }
-
-  //Get Methods
-  public String getName(){
-    return name;
-  }
-
-  public int getHP(){
-    return HP;
-  }
-
-  public int getmaxHP(){
-    return maxHP;
-  }
-
-  public int getEvoDuration(){
-    return evoDuration;
-  }
-
-  private void setmaxHP(int newMax){
-    maxHP = newMax;
-  }
-  //Set Methods
-  private void setHP(int health){
-    this.HP = health;
-  }
-
-  private void setName(String s){
-    this.name = s;
-  }
 }
