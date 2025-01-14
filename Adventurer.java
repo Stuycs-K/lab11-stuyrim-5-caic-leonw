@@ -35,16 +35,6 @@ public abstract class Adventurer{
     }
   }
 
-  //concrete method written using abstract methods.
-  //refill special resource by amount, but only up to at most getSpecialMax()
-  public int restoreSpecial(int n){
-      if( n > getSpecialMax() - getSpecial()){
-              n = getSpecialMax() - getSpecial();
-      }
-      setSpecial(getSpecial()+n);
-      return n;
-  }
-
   public void Evolve(int duration)
   {
     evoDuration = duration;

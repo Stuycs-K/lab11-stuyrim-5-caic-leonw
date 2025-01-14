@@ -8,9 +8,20 @@ public class Game{
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    drawText("╔", 1, 1);
+    drawText("╗", 1, 80);
+    drawText("╚", 29, 1);
+    drawText("╝", 29, 80);
+    for (int i = 0; i < 29; i+=28) {
+      for (int j = 0; j < 79; j++) {
+        drawText("═", 1+i, 2+j);
+      }
+    }
+    for (int i = 0; i < 79; i+=78) {
+      for (int j = 0; j < 79; j++) {
+        drawText("║", 2+j, 2+i);
+      }
+    }
   }
 
   //Display a line of text starting at
@@ -18,7 +29,7 @@ public class Game{
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
     Text.go(startRow, startCol);
-    System.out.println(s);
+    System.out.print(s);
   }
 
   /*Use this method to place text on the screen at a particular location.
@@ -33,8 +44,13 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     if (text.length() < width) {
+      for (int i = 0; i < width - text.length(); i++) {
+        text += "e";
+      }
       drawText(text, row, col);
-      TextBox(row+1, col, width, height-1, " ");
+      if (height > 0) {
+        TextBox(row+1, col, width, height-1, text);
+      }
     } else {
       drawText(text.substring(0, width), row, col);
       TextBox(row+1, col, width, height-1, text.substring(width));
@@ -240,7 +256,7 @@ public class Game{
     Text.hideCursor();
     Text.clear();
 
-    TextBox(1, 1, 15, 5, "hello world this is cody cai back at it again");
+    drawBackground();
 
     Text.reset();
     Text.showCursor();
