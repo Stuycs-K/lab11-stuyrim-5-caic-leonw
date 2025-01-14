@@ -5,13 +5,19 @@ public class Archer extends Adventurer{
   {
 	if(evoDuration > 0)
 	{
+    if( evoDuration == 1)
+    {
+      System.out.println(getName() + "'s evolution wore off.'")
+    }
   	evoDuration--;
 	}
 	switch (state)
 	{
   	case Effect.BURN:
+      setHP(getHP() -2);
     	break;
   	case Effect.BLEED:
+      setHP(getHP() -2);
     	break;
   	default:
     	break;
@@ -23,43 +29,67 @@ public class Archer extends Adventurer{
 
   public void Evolve(int duration)
   {
-	evoDuration = duration;
-	System.out.println(getName() + " has evolved.");
+	   evoDuration = duration;
+	    System.out.println(getName() + " has evolved.");
   }
 
   public String getSpecialName()
   {
-    return("");
+    return("Long Distance Shot");
   }
 
   public String getAttackName()
   {
-    return ("");
+    return ("Tracking Shot");
   }
 
   public String attack(int other)
   {
-
-	   return("");
+    System.out.println(getName() + " used " + getAttackName() + " on " + adventurers[other].getName() + "!");
+    adventurers[other].applyDamage(3);
+    if(evoDuration > 0)
+    {
+      System.out.println(getName() + " is evolved! Ragged tipped arrows have a chance to apply bleed.")
+    }
+    if(chance(30) && evoDuration > 0)
+    {
+      System.out.println(adventurers[other].getName() + " is bleeding!")
+      adventurers[other].state = Effect.BLEED;
+    }
+	  return("");
   }
 
   public String support(int other)
   {
-	   return("");
+    System.out.println(getName() + " healed" + adventurers[other].getName() + ". They restored 10 HP.")
+    adventurers[other].heal();
+	  return("");
   }
 
   public String support()
   {
-	   return("");
+    System.out.println(getName() + " evolved!");
+    Evolve(3);
+	  return("");
   }
 
   public String specialAttack(int other)
   {
-    System.out.println(getName() + " used " + getSpecialName() + " on " + adventurers[other].getName() + "!");
-    if (adventurers[other].getSlot() != this.getSlot())
+    Random rand = new Random();
+    int otherPlayer = rand.nextInt(3) + 3;
+    int damage = 3;
+    System.out.println(getName() + " used " + getSpecialName() + " on " + adventurers[otherPlayer].getName() + "!");
+    if (adventurers[otherPlayer].getSlot() != this.getSlot())
     {
-
+      damage *= 2;
     }
+    adventurers[otherPlayer].applyDamage(damage);
+    if (chance(50))
+    {
+      System.out.println(adventurers[other].getName() + " is bleeding!")
+      adventurers[otherPlayer].state = Effect.BLEED;
+    }
+
     return("");
   }
 

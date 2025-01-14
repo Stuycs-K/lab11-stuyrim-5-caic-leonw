@@ -9,6 +9,7 @@ public abstract class Adventurer{
   public int supportCost;
   public int healCost;
   public Adventurer[] adventurers;
+  public boolean Alive;
 
   enum Effect
   {
@@ -56,8 +57,16 @@ public abstract class Adventurer{
 
   public void applyDamage(int amount){
     this.HP -= amount;
+    CheckDeath();
   }
-
+  private void CheckDeath()
+  {
+    if (this.HP <= 0)
+    {
+      System.out.println(getName() + " Died.");
+      Alive = false;
+    }
+  }
   public Adventurer(String name, int hp, int slot, Adventurer[] adventurers){
     this.name = name;
     this.HP = hp;
@@ -99,9 +108,23 @@ public abstract class Adventurer{
   //Set Methods
   protected void setHP(int health){
     this.HP = health;
+    CheckDeath();
   }
 
   private void setName(String s){
     this.name = s;
+  }
+  public void heal()
+  {
+    this.HP += 10;
+    if (this.HP > this.maxHP):
+    {
+      this.HP = maxHP;
+    }
+  }
+  public boolean chance (int percent)
+  {
+    Random rand = new Random();
+    return (percent < rand.nextInt(100));
   }
 }
