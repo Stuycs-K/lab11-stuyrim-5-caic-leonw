@@ -143,8 +143,8 @@ public class Game{
     boolean boss = false;
 
     //Draw the window border
-    List<Adventurer> adventurers = new List<Adventurer>();
-    List<Adventurer> enemies = new List<Adventurer>();
+    ArrayList<Adventurer> adventurers = new ArrayList<Adventurer>();
+    ArrayList<Adventurer> enemies = new ArrayList<Adventurer>();
     boss = Adventurer.chance(50);
     if (boss)
     {
@@ -246,7 +246,7 @@ public class Game{
 
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
-        
+
         whichOpponent++;
 
       }//end of one enemy.
@@ -272,18 +272,18 @@ public class Game{
     //After quit reset things:
     quit();
   }
-  public Adventurer rand(int slot, List<Adventurer> adventurers, List<Adventurer> enemies)
+  public Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies)
   {
-    new Random rand();
+    Random rand = new Random();
     int k = rand.nextInt(3);
     switch (k)
     {
       case 0:
-        return new Archer(slot, adventurer, enemies);
+        return new Archer(slot, adventurers, enemies);
       case 1:
-        return new Barbarian(slot, adventurer, enemies);
+        return new Barbarian(slot, adventurers, enemies);
       case 2:
-        return new Wizard(slot, adventurer, enemies);
+        return new Wizard(slot, adventurers, enemies);
     }
   }
 

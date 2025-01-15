@@ -57,7 +57,7 @@ public class Barbarian extends Adventurer{
     return("");
   }
 
-  public Barbarian(int slot, List<Adventurer> adventurers, List<Adventurer> enemies){
+  public Barbarian(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
 	  super("Barbarian", 30, slot, adventurers, enemies);
      specialCost = 4;
      supportCost = 6;

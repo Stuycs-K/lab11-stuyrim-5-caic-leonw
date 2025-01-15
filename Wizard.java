@@ -64,7 +64,7 @@ public class Wizard extends Adventurer{
 
 
 
-  public Wizard(int slot, List<Adventurer> adventurers, List<Adventurer> enemies){
+  public Wizard(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
 	  super("Wizard",  20, slot, adventurers, enemies);
     specialCost = 6;
     supportCost = 6;

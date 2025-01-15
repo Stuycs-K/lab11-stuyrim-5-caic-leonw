@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.*;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
@@ -8,8 +9,8 @@ public abstract class Adventurer{
   public int specialCost;
   public int supportCost;
   public int healCost;
-  public List<Adventurer> adventurers;
-  public List<Adventurer> enemies;
+  public ArrayList<Adventurer> adventurers;
+  public ArrayList<Adventurer> enemies;
   public boolean Alive;
 
   enum Effect
@@ -68,7 +69,7 @@ public abstract class Adventurer{
       Alive = false;
     }
   }
-  public Adventurer(String name, int hp, int slot, List<Adventurer> adventurers, List<Adventurer> enemies){
+  public Adventurer(String name, int hp, int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
     this.name = name;
     this.HP = hp;
     this.slot = slot;
