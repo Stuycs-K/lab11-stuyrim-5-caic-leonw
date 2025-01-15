@@ -173,21 +173,6 @@ public class Game{
     Text.clear();
 
 
-    //Things to attack:
-    //Make an ArrayList of Adventurers and add 1-3 enemies to it.
-    //If only 1 enemy is added it should be the boss class.
-    //start with 1 boss and modify the code to allow 2-3 adventurers later.
-    ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-    //Adventurers you control:
-    //Make an ArrayList of Adventurers and add 2-4 Adventurers to it.
-    ArrayList<Adventurer> party = new ArrayList<>();
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     boolean partyTurn = true;
     int whichPlayer = 0;
@@ -197,15 +182,35 @@ public class Game{
     Scanner in = new Scanner(System.in);
     int exlir = 10;
     int darkExlir = 10;
-    //Draw the window border
+    int party = 3;
+    boolean boss = false;
 
+    //Draw the window border
+    ArrayList<Adventurer> adventurers = new ArrayList<Adventurer>();
+    ArrayList<Adventurer> enemies = new ArrayList<Adventurer>();
+    boss = Adventurer.chance(50);
+    if (boss)
+    {
+      enemies.add(new Pekka(0, enemies, adventurer));
+    }
+    else
+    {
+      for (int i = 0; i < 3; i++)
+      {
+        enemies.add(rand(i, enemies, adventurer));
+      }
+    }
+    for (int i = 0; i < 3; i++)
+    {
+      adventurers.add(rand(i, adventurers, enemies));
+    }
     //You can add parameters to draw screen!
     drawScreen();//initial state.
 
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -219,21 +224,41 @@ public class Game{
 
         //Process user input for the last Adventurer:
         if(input.equals("attack") || input.equals("a")){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          if (exlir > adventurer.get(whichPlayer).attackCost())
+          {
+            String ouy= "Who should " + party.get(whichPlayer) + "target";
+            input = userInput(in);
+            exlir -= adventurer.get(whichPlayer).attackCost();
+          }
+          else
+          {
+            String out = "Failed! Not enough exlir.";
+          }
         }
         else if(input.equals("special") || input.equals("sp")){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          if (darkExlir > adventurer.get(whichPlayer).specialCost())
+          {
+            String ouy = "Who should " + party.get(whichPlayer) + "target";
+            input = userInput(in);
+            exlir -= adventurer.get(whichPlayer).specialCost();
+          }
         }
-        else if(input.startsWith("su ") || input.startsWith("support ")){
-          //"support 0" or "su 0" or "su 2" etc.
-          //assume the value that follows su  is an integer.
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+        else if(input.equals("su ") || input.equals("support ")){
+          String out = "Who should " + party.get(whichPlayer) + "target";
+          input = userInput(in);
+          if(!input.equals(""+whichPlayer))
+          {
+            if(exlir > 3)
+            {
+              exlir -=3;
+              party.get(Integer.parseInt(input)).heal();
+            }
+          }
+          else if (darkExlir > 6)
+          {
+            exlir -= 6;
+            party.get(whichPlayer).Evolve();
+          }
         }
 
         //You should decide when you want to re-ask for user input
@@ -244,10 +269,12 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
 
 
-        }else{
+        }
+        else
+        {
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
@@ -255,16 +282,9 @@ public class Game{
           partyTurn = false;
           whichOpponent = 0;
         }
-        //done with one party member
-      }else{
-        //not the party turn!
 
-
-        //enemy attacks a randomly chosen person with a randomly chosen attack.z`
-        //Enemy action choices go here!
-        /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-        //YOUR CODE HERE
-        /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+      }
+      else{
 
 
         //Decide where to draw the following prompt:
@@ -294,6 +314,20 @@ public class Game{
 
     //After quit reset things:
     quit();
+  }
+  public Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies)
+  {
+    Random rand = new Random();
+    int k = rand.nextInt(3);
+    switch (k)
+    {
+      case 0:
+        return new Archer(slot, adventurers, enemies);
+      case 1:
+        return new Barbarian(slot, adventurers, enemies);
+      case 2:
+        return new Wizard(slot, adventurers, enemies);
+    }
   }
 
   public static void main (String[] args) {

@@ -45,24 +45,24 @@ public class Archer extends Adventurer{
 
   public String attack(int other)
   {
-    System.out.println(getName() + " used " + getAttackName() + " on " + adventurers[other].getName() + "!");
-    adventurers[other].applyDamage(3);
+    System.out.println(getName() + " used " + getAttackName() + " on " + enemies.get(other).getName() + "!");
+    enemies.get(other).applyDamage(3);
     if(evoDuration > 0)
     {
       System.out.println(getName() + " is evolved! Ragged tipped arrows have a chance to apply bleed.")
     }
     if(chance(30) && evoDuration > 0)
     {
-      System.out.println(adventurers[other].getName() + " is bleeding!")
-      adventurers[other].state = Effect.BLEED;
+      System.out.println(enemies.get(other).getName() + " is bleeding!")
+      enemies.get(other).state = Effect.BLEED;
     }
 	  return("");
   }
 
   public String support(int other)
   {
-    System.out.println(getName() + " healed" + adventurers[other].getName() + ". They restored 10 HP.")
-    adventurers[other].heal();
+    System.out.println(getName() + " healed" + adventurers.get(other).getName() + ". They restored 10 HP.")
+    adventurers.get(other).heal();
 	  return("");
   }
 
@@ -76,28 +76,27 @@ public class Archer extends Adventurer{
   public String specialAttack(int other)
   {
     Random rand = new Random();
-    int otherPlayer = rand.nextInt(3) + 3;
+    int otherPlayer = rand.nextInt(enemies.size());
     int damage = 3;
-    System.out.println(getName() + " used " + getSpecialName() + " on " + adventurers[otherPlayer].getName() + "!");
-    if (adventurers[otherPlayer].getSlot() != this.getSlot())
+    System.out.println(getName() + " used " + getSpecialName() + " on " + enemies.get(other).getName() + "!");
+    if (enemies.get(otherPlayer).getSlot() != this.getSlot())
     {
       damage *= 2;
     }
-    adventurers[otherPlayer].applyDamage(damage);
+    enemies.get(otherPlayer).applyDamage(damage);
     if (chance(50))
     {
-      System.out.println(adventurers[other].getName() + " is bleeding!")
-      adventurers[otherPlayer].state = Effect.BLEED;
+      System.out.println(enemies.get(otherPlayer).getName() + " is bleeding!")
+      enemies.get(otherPlayer).state = Effect.BLEED;
     }
 
     return("");
   }
 
 
-  public Archer(String name, int hp, int slot, Adventurer[] adventurers){
-	  super(name,hp, slot, adventurers);
+  public Archer(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
+	  super("Archer", 24, slot, adventurers, enemies);
     specialCost = 5;
     supportCost = 6;
-    this.adventurers = adventurers;
   }
 }

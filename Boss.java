@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.*;
 public class Boss extends Adventurer{
   public void Tick()
   {
@@ -56,8 +57,8 @@ public class Boss extends Adventurer{
   {
 	   return("");
   }
-  public Pekka(String name, int hp, int slot, Adventurer[] adventurers){
-	  super(name,hp, slot, adventurers);
+  public Pekka(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
+	  super("Pekka", 40, slot, adventurers, enemies);
      specialCost = 4;
      supportCost = 6;
   }
