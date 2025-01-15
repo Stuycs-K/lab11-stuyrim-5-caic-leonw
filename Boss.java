@@ -56,8 +56,8 @@ public class Boss extends Adventurer{
   {
 	   return("");
   }
-  public Pekka(String name, int hp, int slot, Adventurer[] adventurers){
-	  super(name,hp, slot, adventurers);
+  public Pekka(int slot, List<Adventurer> adventurers, List<Adventurer> enemies){
+	  super("Pekka", 40, slot, adventurers, enemies);
      specialCost = 4;
      supportCost = 6;
   }

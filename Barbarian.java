@@ -57,8 +57,8 @@ public class Barbarian extends Adventurer{
     return("");
   }
 
-  public Barbarian(String name, int hp, int slot, Adventurer[] adventurers){
-	  super(name,hp, slot, adventurers);
+  public Barbarian(int slot, List<Adventurer> adventurers, List<Adventurer> enemies){
+	  super("Barbarian", 30, slot, adventurers, enemies);
      specialCost = 4;
      supportCost = 6;
   }

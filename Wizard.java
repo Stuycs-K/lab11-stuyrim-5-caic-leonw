@@ -64,8 +64,8 @@ public class Wizard extends Adventurer{
 
 
 
-  public Wizard(String name, int hp, int slot, Adventurer[] adventurers){
-	  super(name,hp, slot, adventurers);
+  public Wizard(int slot, List<Adventurer> adventurers, List<Adventurer> enemies){
+	  super("Wizard",  20, slot, adventurers, enemies);
     specialCost = 6;
     supportCost = 6;
   }

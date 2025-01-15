@@ -8,7 +8,8 @@ public abstract class Adventurer{
   public int specialCost;
   public int supportCost;
   public int healCost;
-  public Adventurer[] adventurers;
+  public List<Adventurer> adventurers;
+  public List<Adventurer> enemies;
   public boolean Alive;
 
   enum Effect
@@ -67,7 +68,7 @@ public abstract class Adventurer{
       Alive = false;
     }
   }
-  public Adventurer(String name, int hp, int slot, Adventurer[] adventurers){
+  public Adventurer(String name, int hp, int slot, List<Adventurer> adventurers, List<Adventurer> enemies){
     this.name = name;
     this.HP = hp;
     this.slot = slot;
@@ -75,6 +76,7 @@ public abstract class Adventurer{
     healCost = 3;
     attackCost = 2;
     this.adventurers  = adventurers;
+    this.enemies = enemies;
   }
 
   //toString method
@@ -117,12 +119,12 @@ public abstract class Adventurer{
   public void heal()
   {
     this.HP += 10;
-    if (this.HP > this.maxHP):
+    if (this.HP > this.maxHP)
     {
       this.HP = maxHP;
     }
   }
-  public boolean chance (int percent)
+  public static boolean chance (int percent)
   {
     Random rand = new Random();
     return (percent < rand.nextInt(100));
