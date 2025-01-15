@@ -117,7 +117,7 @@ public abstract class Adventurer{
   public void heal()
   {
     this.HP += 10;
-    if (this.HP > this.maxHP):
+    if (this.HP > this.maxHP)
     {
       this.HP = maxHP;
     }
