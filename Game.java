@@ -8,20 +8,42 @@ public class Game{
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
+
+    //outer borders
     drawText("╔", 1, 1);
     drawText("╗", 1, 80);
-    drawText("╚", 29, 1);
-    drawText("╝", 29, 80);
-    for (int i = 0; i < 29; i+=28) {
-      for (int j = 0; j < 79; j++) {
+    drawText("╚", 28, 1);
+    drawText("╝", 28, 80);
+    for (int i = 0; i < 28; i+=27) {
+      for (int j = 0; j < 78; j++) {
         drawText("═", 1+i, 2+j);
       }
     }
-    for (int i = 0; i < 79; i+=78) {
-      for (int j = 0; j < 79; j++) {
-        drawText("║", 2+j, 2+i);
+    for (int i = 0; i < 80; i+=79) {
+      for (int j = 0; j < 26; j++) {
+        drawText("║", 2+j, 1+i);
       }
     }
+
+    //inner party and text borders
+    for (int i = 0; i < 17; i+=16) {
+      for (int j = 0; j < 78; j++) {
+        drawText("═", 6+i, 2+j);
+      }
+    }
+    for (int i = 0; i < 15; i++) {
+      drawText("║", 7+i, 40);
+    }
+
+    //adding corner characters
+    drawText("╠", 6, 1);
+    drawText("╠", 22, 1);
+    drawText("╣", 6, 80);
+    drawText("╣", 22, 80);
+    drawText("╦", 6, 40);
+    drawText("╩", 22, 40);
+
+    Text.go(30, 1);
   }
 
   //Display a line of text starting at
