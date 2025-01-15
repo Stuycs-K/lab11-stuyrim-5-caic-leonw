@@ -152,6 +152,8 @@ public class Game{
     int turn = 0;
     String input = "";//blank to get into the main loop.
     Scanner in = new Scanner(System.in);
+    int exlir = 10;
+    int darkExlir = 10;
     //Draw the window border
 
     //You can add parameters to draw screen!
