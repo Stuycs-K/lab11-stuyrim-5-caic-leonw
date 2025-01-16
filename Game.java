@@ -26,22 +26,45 @@ public class Game{
     }
 
     //inner party and text borders
-    for (int i = 0; i < 17; i+=16) {
+    for (int i = 0; i < 18; i+=17) {
       for (int j = 0; j < 78; j++) {
         drawText("═", 6+i, 2+j);
       }
     }
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < 16; i++) {
       drawText("║", 7+i, 40);
+    }
+    for (int i = 0; i < 27; i+= 26) {
+      for (int j = 0; j < 4; j++) {
+        drawText("║", 2+j, 28+i);
+      }
+    }
+    for (int i = 0; i < 27; i+= 26) {
+      for (int j = 0; j < 4; j++) {
+        drawText("║", 24+j, 28+i);
+      }
     }
 
     //adding corner characters
     drawText("╠", 6, 1);
-    drawText("╠", 22, 1);
+    drawText("╠", 23, 1);
     drawText("╣", 6, 80);
-    drawText("╣", 22, 80);
+    drawText("╣", 23, 80);
     drawText("╦", 6, 40);
-    drawText("╩", 22, 40);
+    drawText("╩", 23, 40);
+
+    for (int i = 0; i < 27; i+= 26) {
+      drawText("╦", 1, 28+i);
+    }
+    for (int i = 0; i < 27; i+= 26) {
+      drawText("╦", 23, 28+i);
+    }
+    for (int i = 0; i < 27; i+= 26) {
+      drawText("╩", 6, 28+i);
+    }
+    for (int i = 0; i < 27; i+= 26) {
+      drawText("╩", 28, 28+i);
+    }
 
     Text.go(30, 1);
   }
@@ -95,9 +118,7 @@ public class Game{
   * ***THIS ROW INTENTIONALLY LEFT BLANK***
   */
   public static void drawParty(ArrayList<Adventurer> party,int startRow){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
   }
 
 
