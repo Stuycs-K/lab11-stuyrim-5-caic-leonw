@@ -58,8 +58,8 @@ public class Barbarian extends Adventurer{
     return("");
   }
 
-  public Barbarian(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
-	  super("Barbarian", 30, slot, adventurers, enemies);
+  public Barbarian(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team){
+	  super("Barbarian", 30, slot, adventurers, enemies, team);
      specialCost = 4;
      supportCost = 6;
   }

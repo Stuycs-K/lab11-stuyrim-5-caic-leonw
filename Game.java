@@ -191,18 +191,18 @@ public class Game{
     boss = Adventurer.chance(50);
     if (boss)
     {
-      enemies.add(new Boss(0, enemies, adventurers));
+      enemies.add(new Boss(0, enemies, adventurers, false));
     }
     else
     {
       for (int i = 0; i < 3; i++)
       {
-        enemies.add(rand(i, enemies, adventurers));
+        enemies.add(rand(i, enemies, adventurers, false));
       }
     }
     for (int i = 0; i < 3; i++)
     {
-      adventurers.add(rand(i, adventurers, enemies));
+      adventurers.add(rand(i, adventurers, enemies, true));
     }
     //You can add parameters to draw screen!
     drawScreen();//initial state.
@@ -315,20 +315,20 @@ public class Game{
     //After quit reset things:
     quit();
   }
-  public static Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies)
+  public static Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team)
   {
     Random rand = new Random();
     int k = rand.nextInt(3);
     switch (k)
     {
       case 0:
-        return new Archer(slot, adventurers, enemies);
+        return new Archer(slot, adventurers, enemies, team);
       case 1:
-        return new Barbarian(slot, adventurers, enemies);
+        return new Barbarian(slot, adventurers, enemies, team);
       case 2:
-        return new Wizard(slot, adventurers, enemies);
+        return new Wizard(slot, adventurers, enemies, team);
       default:
-        return new Wizard(slot, adventurers, enemies);
+        return new Wizard(slot, adventurers, enemies, team);
     }
   }
 
