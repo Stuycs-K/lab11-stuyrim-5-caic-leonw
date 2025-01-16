@@ -191,13 +191,13 @@ public class Game{
     boss = Adventurer.chance(50);
     if (boss)
     {
-      enemies.add(new Pekka(0, enemies, adventurer));
+      enemies.add(new Boss(0, enemies, adventurers));
     }
     else
     {
       for (int i = 0; i < 3; i++)
       {
-        enemies.add(rand(i, enemies, adventurer));
+        enemies.add(rand(i, enemies, adventurers));
       }
     }
     for (int i = 0; i < 3; i++)
@@ -210,7 +210,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
+    String preprompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/support/quit";
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -224,11 +224,11 @@ public class Game{
 
         //Process user input for the last Adventurer:
         if(input.equals("attack") || input.equals("a")){
-          if (exlir > adventurer.get(whichPlayer).attackCost())
+          if (exlir > adventurers.get(whichPlayer).attackCost)
           {
-            String ouy= "Who should " + party.get(whichPlayer) + "target";
+            String ouy= "Who should " + adventurers.get(whichPlayer) + "target";
             input = userInput(in);
-            exlir -= adventurer.get(whichPlayer).attackCost();
+            exlir -= adventurers.get(whichPlayer).specialCost;
           }
           else
           {
@@ -236,28 +236,28 @@ public class Game{
           }
         }
         else if(input.equals("special") || input.equals("sp")){
-          if (darkExlir > adventurer.get(whichPlayer).specialCost())
+          if (darkExlir > adventurers.get(whichPlayer).specialCost)
           {
-            String ouy = "Who should " + party.get(whichPlayer) + "target";
+            String ouy = "Who should " + adventurers.get(whichPlayer) + "target";
             input = userInput(in);
-            exlir -= adventurer.get(whichPlayer).specialCost();
+            exlir -= adventurers.get(whichPlayer).specialCost;
           }
         }
         else if(input.equals("su ") || input.equals("support ")){
-          String out = "Who should " + party.get(whichPlayer) + "target";
+          String out = "Who should " + adventurers.get(whichPlayer) + "target";
           input = userInput(in);
           if(!input.equals(""+whichPlayer))
           {
             if(exlir > 3)
             {
               exlir -=3;
-              party.get(Integer.parseInt(input)).heal();
+              adventurers.get(Integer.parseInt(input)).heal();
             }
           }
           else if (darkExlir > 6)
           {
             exlir -= 6;
-            party.get(whichPlayer).Evolve();
+            adventurers.get(whichPlayer).Evolve(3);
           }
         }
 
@@ -266,10 +266,10 @@ public class Game{
         whichPlayer++;
 
 
-        if(whichPlayer < party.size()){
+        if(whichPlayer < adventurers.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
+          String prompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/support/quit";
 
 
         }
@@ -302,7 +302,7 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        String prompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/quit";
       }
 
       //display the updated screen after input has been processed.
@@ -315,7 +315,7 @@ public class Game{
     //After quit reset things:
     quit();
   }
-  public Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies)
+  public static Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies)
   {
     Random rand = new Random();
     int k = rand.nextInt(3);
@@ -326,6 +326,8 @@ public class Game{
       case 1:
         return new Barbarian(slot, adventurers, enemies);
       case 2:
+        return new Wizard(slot, adventurers, enemies);
+      default:
         return new Wizard(slot, adventurers, enemies);
     }
   }

@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.*;
 public class Wizard extends Adventurer{
 
   public void Tick()
@@ -64,8 +65,8 @@ public class Wizard extends Adventurer{
 
 
 
-  public Wizard(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, Game game){
-	  super("Wizard",  20, slot, adventurers, enemies, game);
+  public Wizard(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
+	  super("Wizard",  20, slot, adventurers, enemies);
     specialCost = 6;
     supportCost = 6;
   }

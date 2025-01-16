@@ -57,8 +57,8 @@ public class Boss extends Adventurer{
   {
 	   return("");
   }
-  public Pekka(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, Game game){
-	  super("Pekka", 40, slot, adventurers, enemies, game);
+  public Boss(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
+	  super("Pekka", 40, slot, adventurers, enemies);
      specialCost = 4;
      supportCost = 6;
   }

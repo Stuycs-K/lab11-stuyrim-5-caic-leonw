@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.*;
 public class Archer extends Adventurer{
 
   public void Tick()
@@ -7,7 +8,7 @@ public class Archer extends Adventurer{
 	{
     if( evoDuration == 1)
     {
-      System.out.println(getName() + "'s evolution wore off.'")
+      System.out.println(getName() + "'s evolution wore off.'");
     }
   	evoDuration--;
 	}
@@ -49,11 +50,11 @@ public class Archer extends Adventurer{
     enemies.get(other).applyDamage(3);
     if(evoDuration > 0)
     {
-      System.out.println(getName() + " is evolved! Ragged tipped arrows have a chance to apply bleed.")
+      System.out.println(getName() + " is evolved! Ragged tipped arrows have a chance to apply bleed.");
     }
     if(chance(30) && evoDuration > 0)
     {
-      System.out.println(enemies.get(other).getName() + " is bleeding!")
+      System.out.println(enemies.get(other).getName() + " is bleeding!");
       enemies.get(other).state = Effect.BLEED;
     }
 	  return("");
@@ -61,7 +62,7 @@ public class Archer extends Adventurer{
 
   public String support(int other)
   {
-    System.out.println(getName() + " healed" + adventurers.get(other).getName() + ". They restored 10 HP.")
+    System.out.println(getName() + " healed" + adventurers.get(other).getName() + ". They restored 10 HP.");
     adventurers.get(other).heal();
 	  return("");
   }
@@ -86,7 +87,7 @@ public class Archer extends Adventurer{
     enemies.get(otherPlayer).applyDamage(damage);
     if (chance(50))
     {
-      System.out.println(enemies.get(otherPlayer).getName() + " is bleeding!")
+      System.out.println(enemies.get(otherPlayer).getName() + " is bleeding!");
       enemies.get(otherPlayer).state = Effect.BLEED;
     }
 
@@ -94,8 +95,8 @@ public class Archer extends Adventurer{
   }
 
 
-  public Archer(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, Game game){
-	  super("Archer", 24, slot, adventurers, enemies, game);
+  public Archer(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
+	  super("Archer", 24, slot, adventurers, enemies);
     specialCost = 5;
     supportCost = 6;
   }
