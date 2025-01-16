@@ -94,8 +94,8 @@ public class Archer extends Adventurer{
   }
 
 
-  public Archer(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
-	  super("Archer", 24, slot, adventurers, enemies);
+  public Archer(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, Game game){
+	  super("Archer", 24, slot, adventurers, enemies, game);
     specialCost = 5;
     supportCost = 6;
   }

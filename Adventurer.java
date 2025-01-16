@@ -12,6 +12,7 @@ public abstract class Adventurer{
   public ArrayList<Adventurer> adventurers;
   public ArrayList<Adventurer> enemies;
   public boolean Alive;
+  public Game game;
 
   enum Effect
   {
@@ -69,7 +70,7 @@ public abstract class Adventurer{
       Alive = false;
     }
   }
-  public Adventurer(String name, int hp, int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies){
+  public Adventurer(String name, int hp, int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, Game game){
     this.name = name;
     this.HP = hp;
     this.slot = slot;
@@ -78,6 +79,7 @@ public abstract class Adventurer{
     attackCost = 2;
     this.adventurers  = adventurers;
     this.enemies = enemies;
+    this.game = game;
   }
 
   //toString method
