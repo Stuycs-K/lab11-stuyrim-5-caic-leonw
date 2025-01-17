@@ -184,14 +184,14 @@ public class Game{
     int darkExlir = 10;
     int party = 3;
     boolean boss = false;
-
+    boolean win = false;
     int enemyExlir = 10;
     int enemyDarkExlir = 10;
 
     //Draw the window border
     ArrayList<Adventurer> adventurers = new ArrayList<Adventurer>();
     ArrayList<Adventurer> enemies = new ArrayList<Adventurer>();
-    boss = Adventurer.chance(50);
+    boss = Adventurer.chance(20);
     if (boss)
     {
       enemies.add(new Boss(0, enemies, adventurers, false));
@@ -215,7 +215,7 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/support/quit";
 
-    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")))
+    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")) && !win)
     {
       //Read user input
       outputResult(preprompt, !partyTurn);
@@ -418,6 +418,34 @@ public class Game{
         enemyExlir += 10;
         enemyDarkExlir += 5;
         preprompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/quit";
+        boolean end = true;
+        for (int i = 0; i < enemies.size(); i++)
+        {
+          if (enemies.get(i).alive)
+          {
+            end = false;
+            break;
+          }
+        }
+        if (end)
+        {
+          outputResult("You win!");
+          win = true;
+        }
+        end = true;
+        for (int i = 0; i < adventurers.size(); i++)
+        {
+          if (adventurers.get(i).alive)
+          {
+            end = false;
+            break;
+          }
+        }
+        if (end)
+        {
+          outputResult("You lose...");
+          win = true;
+        }
       }
 
       drawScreen();
