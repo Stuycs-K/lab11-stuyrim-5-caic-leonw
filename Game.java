@@ -240,7 +240,7 @@ public class Game{
                 exlir -= 2;
                 adventurers.get(whichPlayer).attack(target);
               }
-              
+
             }
             else
             {
@@ -251,7 +251,7 @@ public class Game{
 
 
           else if(input.equals("special") || input.equals("sp"))
-          
+
           {
             if (darkExlir > adventurers.get(whichPlayer).specialCost)
             {
@@ -274,7 +274,7 @@ public class Game{
           }
 
           else if(input.equals("su ") || input.equals("support "))
-          
+
           {
             out = "Who should " + adventurers.get(whichPlayer) + " target";
             outputResult(out);
@@ -314,7 +314,7 @@ public class Game{
         adventurers.get(whichPlayer).Tick();
         whichPlayer++;
         DrawExlir(exlir, darkExlir);
-        
+
 
         if(whichPlayer < adventurers.size()){
           //This is a player turn.
@@ -337,7 +337,7 @@ public class Game{
         if (enemies.get(whichOpponent).alive)
         {
           preprompt = "press enter to see next turn";
-        
+
           Random random = new Random();
           int c = random.nextInt(3);
           int k = random.nextInt(adventurers.size());
@@ -353,10 +353,10 @@ public class Game{
               out = "Failed! Not enough exlir.";
             }
           }
-  
-  
+
+
           else if(c == 1)
-          
+
           {
             if (enemyDarkExlir> enemies.get(whichOpponent).specialCost)
             {
@@ -369,8 +369,8 @@ public class Game{
               outputResult(out, true);
             }
           }
-  
-          else if(c == 2) 
+
+          else if(c == 2)
           {
             k = random.nextInt(enemies.size());
             if(k != whichOpponent)
@@ -494,6 +494,13 @@ public class Game{
       col += 40;
     }
     TextBox(17,col,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
+  }
+  public static void DrawTeam(String str, int slot, boolean right)
+  {
+    int col = 2;
+    col += slot * 27;
+    int offset = right? -10 : 0;
+    TextBox(30 + offset ,col,38,6,str);
   }
 
 
