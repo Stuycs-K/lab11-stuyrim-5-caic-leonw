@@ -88,7 +88,7 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text) {
-    if (height <= 0 || text.isEmpty()) {
+    if (row < height) {
         return;
     }
 
@@ -100,7 +100,7 @@ public class Game{
     }
 
     drawText(line, row, col);
-    TextBox(row + 1, col, width, height - 1, text.length() > width ? text.substring(width) : "");
+    TextBox(row + 1, col, width, height, text.length() > width ? text.substring(width) : "");
 }
   //return a random adventurer (choose between all available subclasses)
   //feel free to overload this method to allow specific names/stats.
@@ -471,10 +471,20 @@ public class Game{
   }
   public static void outputResult(String str)
   {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
     TextBox(10,4,38,6, str);
   }
   public static void outputResult(String str, boolean right)
   {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
     int col = 2;
     if (right)
     {

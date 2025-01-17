@@ -60,7 +60,7 @@ public class Boss extends Adventurer{
         damage = damage * 1.5;
       }
       if (evoDuration > 0)
-      { 
+      {
         Game.outputResult(getName() + " is evolved, healing after the attack!", !good);
         damage += 2;
         setHP(getHP() + 2);
