@@ -219,7 +219,7 @@ public class Game{
     {
       //Read user input
       outputResult(preprompt, !partyTurn);
-
+      Text.go(29, 1);
       input = userInput(in);
 
       String out = "";
@@ -233,6 +233,7 @@ public class Game{
             {
               out = "Who should " + adventurers.get(whichPlayer) + " target";
               outputResult(out);
+              Text.go(29, 1);
               input = userInput(in);
               int target = Integer.parseInt(input);
               if (target < enemies.size())
@@ -257,6 +258,7 @@ public class Game{
             {
               out = "Who should " + adventurers.get(whichPlayer) + " target";
               outputResult(out);
+              Text.go(29, 1);
               input = userInput(in);
               int target = Integer.parseInt(input);
               exlir -= adventurers.get(whichPlayer).specialCost;
@@ -278,6 +280,7 @@ public class Game{
           {
             out = "Who should " + adventurers.get(whichPlayer) + " target";
             outputResult(out);
+            Text.go(29, 1);
             input = userInput(in);
             int target = Integer.parseInt(input);
             if(target != whichPlayer && target < adventurers.size())
