@@ -129,6 +129,13 @@ public class Game{
     // under 25% : red
     // under 75% : yellow
     // otherwise : white
+    if ((hp / maxHP) < 0.25) {
+      Text.colorize(output, 31);
+    } else if ((hp / maxHP) < 0.75) {
+      Text.colorize(output, 33);
+    } else {
+      Text.colorize(output, 37);
+    }
     return output;
   }
 
