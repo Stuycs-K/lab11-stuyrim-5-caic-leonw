@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.*;
 public class Archer extends Adventurer{
 
@@ -6,18 +5,19 @@ public class Archer extends Adventurer{
   {
 	if(evoDuration > 0)
 	{
-    if( evoDuration == 1)
+    evoDuration--;
+    if( evoDuration == 0)
     {
-      System.out.println(getName() + "'s evolution wore off.'");
+      Game.outputResult(getName() + "'s evolution wore off.'", !good);
     }
-  	evoDuration--;
+  	
 	}
 	switch (state)
 	{
-  	case Effect.BURN:
+  	case BURN:
       setHP(getHP() -2);
     	break;
-  	case Effect.BLEED:
+  	case BLEED:
       setHP(getHP() -2);
     	break;
   	default:
@@ -30,8 +30,8 @@ public class Archer extends Adventurer{
 
   public void Evolve(int duration)
   {
-	   evoDuration = duration;
-	    System.out.println(getName() + " has evolved.");
+	  evoDuration = duration;
+	  Game.outputResult(getName() + " has evolved.", !good);
   }
 
   public String getSpecialName()
@@ -46,15 +46,15 @@ public class Archer extends Adventurer{
 
   public String attack(int other)
   {
-    System.out.println(getName() + " used " + getAttackName() + " on " + enemies.get(other).getName() + "!");
+    Game.outputResult(getName() + " used " + getAttackName() + " on " + enemies.get(other).getName() + "!", !good);
     enemies.get(other).applyDamage(3);
     if(evoDuration > 0)
     {
-      System.out.println(getName() + " is evolved! Ragged tipped arrows have a chance to apply bleed.");
+      Game.outputResult(getName() + " is evolved! Ragged tipped arrows have a chance to apply bleed.", !good);
     }
     if(chance(30) && evoDuration > 0)
     {
-      System.out.println(enemies.get(other).getName() + " is bleeding!");
+      Game.outputResult(enemies.get(other).getName() + " is bleeding!", !good);
       enemies.get(other).state = Effect.BLEED;
     }
 	  return("");
@@ -62,14 +62,14 @@ public class Archer extends Adventurer{
 
   public String support(int other)
   {
-    System.out.println(getName() + " healed" + adventurers.get(other).getName() + ". They restored 10 HP.");
+    Game.outputResult(getName() + " healed" + adventurers.get(other).getName() + ". They restored 10 HP.", !good);
     adventurers.get(other).heal();
 	  return("");
   }
 
   public String support()
   {
-    System.out.println(getName() + " evolved!");
+    Game.outputResult(getName() + " evolved!", !good);
     Evolve(3);
 	  return("");
   }
@@ -79,7 +79,7 @@ public class Archer extends Adventurer{
     Random rand = new Random();
     int otherPlayer = rand.nextInt(enemies.size());
     int damage = 3;
-    System.out.println(getName() + " used " + getSpecialName() + " on " + enemies.get(other).getName() + "!");
+    Game.outputResult(getName() + " used " + getSpecialName() + " on " + enemies.get(other).getName() + "!", !good);
     if (enemies.get(otherPlayer).getSlot() != this.getSlot())
     {
       damage *= 2;
@@ -87,7 +87,7 @@ public class Archer extends Adventurer{
     enemies.get(otherPlayer).applyDamage(damage);
     if (chance(50))
     {
-      System.out.println(enemies.get(otherPlayer).getName() + " is bleeding!");
+      Game.outputResult(enemies.get(otherPlayer).getName() + " is bleeding!", !good);
       enemies.get(otherPlayer).state = Effect.BLEED;
     }
 

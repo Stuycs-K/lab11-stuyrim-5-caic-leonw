@@ -43,9 +43,9 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
 | Attack | Sword Swing: The barbarian skillfully swings its sword at the opponent, dealing damage. | 4 dmg | 2 elixir |
-| Special | Consecutive Swings: The barbarian launches a series of two attacks on multiple random targets. If it hits the same target consecutively, extra damage is dealt. | 4 dmg (x2); 1.25x dmg each hit if consecutive | 4 dark elixir |
+| Special | Consecutive Swings: The barbarian launches a series of two attacks on multiple random targets. If it hits the same target consecutively, extra damage is dealt. | 4 dmg (x2); 150% dmg each hit if consecutive | 4 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Evolution: The barbarian rages itself up, gaining a stat boost and becoming more resourceful with its elixir. | 1.33x HP, 1.5x dmg from rage (stacks with special), 25% chance to recover 50% of elixir spent after turn. | 6 dark elixir |
+| Self Support | Evolution: The barbarian rages itself up, gaining a stat boost and becoming more resourceful with its elixir. | 150% dmg from rage (stacks with special), 25% chance to deal an additional 50% more. | 6 dark elixir |
 
 ### Wizard Abilities
 
@@ -54,7 +54,7 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Attack | Fireball: The wizard sends a flaming fireball at the target, dealing high fire damage. | 6 dmg | 2 elixir |
 | Special | Flamethrower: The wizard shoots flames from its hands, damaging all opponents and leaving them with a chance of burn. | 4 dmg to each enemy; 10% chance to burn, dealing 2 dmg at the end of each turn. | 6 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Evolution: The wizard cloaks itself in a fire shield, which explodes on all enemies upon destruction. | 1.5x HP, fire shield with 10 HP that when broken, does 3 dmg to all. | 6 dark elixir |
+| Self Support | Evolution: The wizard cloaks itself in a fire shield, which explodes on all enemies upon destruction. | Fire shield with 10 HP that when broken, does 3 dmg to all. | 6 dark elixir |
 
 ### Archer Abilities
 
@@ -63,13 +63,13 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Attack | Tracking Shot: The archer shoots an arrow at the selected target which never misses. | 3 dmg | 2 elixir |
 | Special | Long Distance Shot: The archer fires an arrow randomly at the opponents. If the opponent is not directly in front of the archer, the arrow deals more damage and has a chance to inflict the bleeding effect. | 3 dmg if opponent is in front of the archer. 2x dmg if not in front. 50% chance to bleed, dealing 2 dmg at the end of each turn. | 5 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Evolution: The archer uses ragged tips for its arrows and increases its dark energy supply. | 1.25x HP, 30% chance for every arrow to inflict bleed, 2 dark elixir gained after every turn. | 6 dark elixir |
+| Self Support | Evolution: The archer uses ragged tips for its arrows and increases its dark energy supply. | 30% chance for every arrow to inflict bleed, 2 dark elixir gained after every turn. | 6 dark elixir |
 
 ### PEKKA Abilities
 
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
 | Attack | Saber Swing: The PEKKA swings its saber at the enemy, dealing high damage. However, this can only be used every other turn. | 12 dmg | 2 elixir |
-| Special | Limb Breaker: The PEKKA swings at the opponents limbs, paralyzing them the next turn. | 10 dmg | 4 dark elixir |
+| Special | Limb Breaker: The PEKKA swings at the opponents limbs. Attacking them the next turn deals 150% damage. | 10 dmg | 4 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Evolution: The PEKKA evolves, gaining a stat boost. Also, after every attack, the PEKKA heals two HP. | 1.25x dmg, 1.25x HP, +2 HP after every attack. | 6 dark elixir |
+| Self Support | Evolution: The PEKKA evolves, gaining a stat boost. Also, after every attack, the PEKKA heals two HP. | 1.25x dmg, +2 HP after every attack. | 6 dark elixir |

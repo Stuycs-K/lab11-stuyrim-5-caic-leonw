@@ -1,0 +1,62 @@
+
+        String prompt = "press enter to see next turn";
+        
+        Random random = new Random();
+        int c = random.nextInt(4);
+        if(c == 0)
+        {
+          if (enemyExlir> enemies.get(whichOpponent).attackCost)
+          {
+            out = "Who should " + enemies.get(whichOpponent) + "target";
+            input = userInput(in);
+            enemyExlir-= enemies.get(whichOpponent).specialCost;
+          }
+          else
+          {
+            out = "Failed! Not enough exlir.";
+          }
+        }
+
+
+        else if(c == 1)
+        
+        {
+          if (enemyDarkExlir> enemies.get(whichOpponent).specialCost)
+          {
+            out = "Who should " + enemies.get(whichOpponent) + "target";
+            input = userInput(in);
+            enemyExlir-= enemies.get(whichOpponent).specialCost;
+          }
+          else
+          {
+            out = "Failed! Not enough exlir.";
+          }
+        }
+
+        else if(c == 2 || c == 3) 
+        {
+          out = "Who should " + enemies.get(whichOpponent) + "target";
+          input = userInput(in);
+          if(c == 2)
+          {
+            if(enemyExlir> 3)
+            {
+              enemyExlir-=3;
+              enemies.get(Integer.parseInt(input)).heal();
+            }
+            else
+            {
+              out = "Failed! Not enough exlir.";
+            }
+          }
+          else if (c == 3 && enemyDarkExlir> 6)
+          {
+            enemyExlir-= 6;
+            enemies.get(whichOpponent).Evolve(3);
+          }
+          else
+          {
+            out = "Failed! Not enough exlir.";
+          }
+        }
+        whichOpponent++;

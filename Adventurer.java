@@ -11,10 +11,10 @@ public abstract class Adventurer{
   public int healCost;
   public ArrayList<Adventurer> adventurers;
   public ArrayList<Adventurer> enemies;
-  public boolean Alive;
+  public boolean alive;
   public boolean good;
 
-  enum Effect
+  public enum Effect
   {
     NONE,
     BURN,
@@ -30,9 +30,9 @@ public abstract class Adventurer{
     }
     switch (state)
     {
-      case Effect.BURN:
+      case BURN:
         break;
-      case Effect.BLEED:
+      case BLEED:
         break;
       default:
         break;
@@ -67,7 +67,7 @@ public abstract class Adventurer{
     if (this.HP <= 0)
     {
       System.out.println(getName() + " Died.");
-      Alive = false;
+      alive = false;
     }
   }
   public Adventurer(String name, int hp, int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team){
@@ -80,6 +80,7 @@ public abstract class Adventurer{
     this.adventurers  = adventurers;
     this.enemies = enemies;
     this.good = team;
+    alive = true;
   }
 
   //toString method

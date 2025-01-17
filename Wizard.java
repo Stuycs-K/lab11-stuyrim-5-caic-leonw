@@ -1,18 +1,23 @@
-import java.util.Random;
 import java.util.*;
 public class Wizard extends Adventurer{
-
+  public int shield = 0;
   public void Tick()
   {
     if(evoDuration > 0)
     {
       evoDuration--;
+      if (evoDuration == 0)
+      {
+        shield = 0;
+        Game.outputResult(getName() + "'s evolution wore off", !good);
+      }
     }
+
     switch (state)
     {
-      case Effect.BURN:
+      case BURN:
         break;
-      case Effect.BLEED:
+      case BLEED:
         break;
       default:
         break;
@@ -25,42 +30,78 @@ public class Wizard extends Adventurer{
   public void Evolve(int duration)
   {
     evoDuration = duration;
-    System.out.println(getName() + " has evolved.");
+    Game.outputResult(getName() + " has evolved, gaining a Fire Shield.", !good);
+    shield = 10;
   }
 
   public String getSpecialName()
   {
-    return("");
+    return("Flamethrower");
   }
 
   public String getAttackName()
   {
-    return ("");
+    return ("Fireball");
   }
 
 
   public String attack(int other)
   {
-    return("");
+    Game.outputResult(getName() + " used " + getAttackName() + " on " + enemies.get(other).getName() + "!", !good);
+    int damage = 6;
+    enemies.get(other).applyDamage(damage);
+	  return("");
   }
 
   public String support(int other)
   {
-    return("");
+    Game.outputResult(getName() + " healed" + adventurers.get(other).getName() + ". They restored 10 HP.", !good);
+    adventurers.get(other).heal();
+	  return("");
   }
 
   public String support()
   {
-    return("");
+    Game.outputResult(getName() + " evolved!", !good);
+    Evolve(3);
+	  return("");
   }
 
   public String specialAttack(int other)
   {
+    Game.outputResult(getName() + " used " + getSpecialName() + ", hitting all enemies!", !good);
+    for (int i = 0; i < enemies.size(); i++)
+    {
+      enemies.get(i).applyDamage(4);
+      if (chance(10))
+      {
+        enemies.get(i).state = Effect.BURN;
+      }
+    }
     return("");
   }
+
   public void applyDamage(int amount)
   {
-    setHP(getHP() - amount);
+    if (shield > 0)
+    {
+      shield -= amount;
+      if (shield < 0)
+      {
+        shield = 0;
+        evoDuration = 0;
+        for (int i = 0; i < enemies.size(); i++)
+        {
+          enemies.get(i).applyDamage(3);
+        }
+        Game.outputResult(getName() + "'s Fire Shield broke, hitting all enemies!", !good);
+      }
+    }
+    else
+    {
+      setHP(getHP() - amount);
+    }
+    
   }
 
 

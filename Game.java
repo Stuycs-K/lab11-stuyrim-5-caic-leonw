@@ -87,21 +87,21 @@ public class Game{
   *@param width the number of characters per row
   *@param height the number of rows
   */
-  public static void TextBox(int row, int col, int width, int height, String text){
-    if (text.length() < width) {
-      for (int i = 0; i < width - text.length(); i++) {
-        text += "e";
-      }
-      drawText(text, row, col);
-      if (height > 0) {
-        TextBox(row+1, col, width, height-1, text);
-      }
-    } else {
-      drawText(text.substring(0, width), row, col);
-      TextBox(row+1, col, width, height-1, text.substring(width));
+  public static void TextBox(int row, int col, int width, int height, String text) {
+    if (height <= 0 || text.isEmpty()) {
+        return;
     }
-  }
 
+    String line;
+    if (text.length() < width) {
+        line = text + " ".repeat(width - text.length());
+    } else {
+        line = text.substring(0, width);
+    }
+
+    drawText(line, row, col);
+    TextBox(row + 1, col, width, height - 1, text.length() > width ? text.substring(width) : "");
+}
   //return a random adventurer (choose between all available subclasses)
   //feel free to overload this method to allow specific names/stats.
   // public static Adventurer createRandomAdventurer(){
@@ -185,6 +185,9 @@ public class Game{
     int party = 3;
     boolean boss = false;
 
+    int enemyExlir = 10;
+    int enemyDarkExlir = 10;
+
     //Draw the window border
     ArrayList<Adventurer> adventurers = new ArrayList<Adventurer>();
     ArrayList<Adventurer> enemies = new ArrayList<Adventurer>();
@@ -212,86 +215,196 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/support/quit";
 
-    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")))
+    {
       //Read user input
+      outputResult(preprompt, !partyTurn);
+
       input = userInput(in);
 
-      //example debug statment
-      TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
-
-      //display event based on last turn's input
-      if(partyTurn){
-
-        //Process user input for the last Adventurer:
-        if(input.equals("attack") || input.equals("a")){
-          if (exlir > adventurers.get(whichPlayer).attackCost)
+      String out = "";
+      if(partyTurn )
+      {
+        if (adventurers.get(whichPlayer).alive == true)
+        {
+          if(input.equals("attack") || input.equals("a"))
           {
-            String ouy= "Who should " + adventurers.get(whichPlayer) + "target";
-            input = userInput(in);
-            exlir -= adventurers.get(whichPlayer).specialCost;
-          }
-          else
-          {
-            String out = "Failed! Not enough exlir.";
-          }
-        }
-        else if(input.equals("special") || input.equals("sp")){
-          if (darkExlir > adventurers.get(whichPlayer).specialCost)
-          {
-            String ouy = "Who should " + adventurers.get(whichPlayer) + "target";
-            input = userInput(in);
-            exlir -= adventurers.get(whichPlayer).specialCost;
-          }
-        }
-        else if(input.equals("su ") || input.equals("support ")){
-          String out = "Who should " + adventurers.get(whichPlayer) + "target";
-          input = userInput(in);
-          if(!input.equals(""+whichPlayer))
-          {
-            if(exlir > 3)
+            if (exlir > 2)
             {
-              exlir -=3;
-              adventurers.get(Integer.parseInt(input)).heal();
+              out = "Who should " + adventurers.get(whichPlayer) + " target";
+              outputResult(out);
+              input = userInput(in);
+              int target = Integer.parseInt(input);
+              if (target < enemies.size())
+              {
+                exlir -= 2;
+                adventurers.get(whichPlayer).attack(target);
+              }
+              
+            }
+            else
+            {
+              out = "Failed! Not enough exlir.";
+              outputResult(out);
             }
           }
-          else if (darkExlir > 6)
+
+
+          else if(input.equals("special") || input.equals("sp"))
+          
           {
-            exlir -= 6;
-            adventurers.get(whichPlayer).Evolve(3);
+            if (darkExlir > adventurers.get(whichPlayer).specialCost)
+            {
+              out = "Who should " + adventurers.get(whichPlayer) + " target";
+              outputResult(out);
+              input = userInput(in);
+              int target = Integer.parseInt(input);
+              exlir -= adventurers.get(whichPlayer).specialCost;
+              if (target < enemies.size())
+              {
+                exlir -= adventurers.get(whichPlayer).specialCost;
+                adventurers.get(whichPlayer).specialAttack(target);
+              }
+            }
+            else
+            {
+              out = "Failed! Not enough exlir.";
+              outputResult(out);
+            }
+          }
+
+          else if(input.equals("su ") || input.equals("support "))
+          
+          {
+            out = "Who should " + adventurers.get(whichPlayer) + " target";
+            outputResult(out);
+            input = userInput(in);
+            int target = Integer.parseInt(input);
+            if(target != whichPlayer && target < adventurers.size())
+            {
+              if(exlir > 3)
+              {
+                exlir -=3;
+                adventurers.get(Integer.parseInt(input)).heal();
+              }
+              else
+              {
+                out = "Failed! Not enough exlir.";
+                outputResult(out);
+              }
+            }
+            else if (darkExlir > 6)
+            {
+              exlir -= 6;
+              adventurers.get(whichPlayer).Evolve(3);
+            }
+            else
+            {
+              out = "Failed! Not enough exlir.";
+              outputResult(out);
+            }
           }
         }
-
+        else
+        {
+          outputResult(adventurers.get(whichPlayer).getName() + " is dead.");
+        }
         //You should decide when you want to re-ask for user input
         //If no errors:
+        adventurers.get(whichPlayer).Tick();
         whichPlayer++;
-
+        DrawExlir(exlir, darkExlir);
+        
 
         if(whichPlayer < adventurers.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/support/quit";
-
-
+          preprompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/support/quit";
         }
         else
         {
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "press enter to see monster's turn";
-
+          preprompt = "press enter to see monster's turn";
+          exlir += 10;
+          darkExlir += 5;
           partyTurn = false;
           whichOpponent = 0;
         }
 
       }
       else{
-
-
-        //Decide where to draw the following prompt:
-        String prompt = "press enter to see next turn";
-
+        if (enemies.get(whichOpponent).alive)
+        {
+          preprompt = "press enter to see next turn";
+        
+          Random random = new Random();
+          int c = random.nextInt(3);
+          int k = random.nextInt(adventurers.size());
+          if(c == 0)
+          {
+            if (enemyExlir > 2)
+            {
+              enemies.get(whichOpponent).attack(k);
+              enemyExlir-= 2;
+            }
+            else
+            {
+              out = "Failed! Not enough exlir.";
+            }
+          }
+  
+  
+          else if(c == 1)
+          
+          {
+            if (enemyDarkExlir> enemies.get(whichOpponent).specialCost)
+            {
+              enemies.get(whichOpponent).specialAttack(k);
+              enemyDarkExlir-= enemies.get(whichOpponent).specialCost;
+            }
+            else
+            {
+              out = "Failed! Not enough exlir.";
+              outputResult(out, true);
+            }
+          }
+  
+          else if(c == 2) 
+          {
+            k = random.nextInt(enemies.size());
+            if(k != whichOpponent)
+            {
+              if(enemyExlir> 3)
+              {
+                enemyExlir-=3;
+                enemies.get(k).heal();
+              }
+              else
+              {
+                out = "Failed! Not enough exlir.";
+                outputResult(out, true);
+              }
+            }
+            else if (enemyDarkExlir> 6)
+            {
+              enemyExlir-= 6;
+              enemies.get(whichOpponent).Evolve(3);
+            }
+            else
+            {
+              out = "Failed! Not enough exlir.";
+              outputResult(out, true);
+            }
+          }
+        }
+        else
+        {
+          outputResult(enemies.get(whichOpponent).getName() + " is dead.", true);
+        }
+        enemies.get(whichOpponent).Tick();
         whichOpponent++;
-
+        DrawExlir(enemyExlir, enemyDarkExlir, true);
       }//end of one enemy.
 
       //modify this if statement.
@@ -302,17 +415,14 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/quit";
+        enemyExlir += 10;
+        enemyDarkExlir += 5;
+        preprompt = "Enter command for "+adventurers.get(whichPlayer)+": attack/special/quit";
       }
 
-      //display the updated screen after input has been processed.
       drawScreen();
+    }
 
-
-    }//end of main game loop
-
-
-    //After quit reset things:
     quit();
   }
   public static Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team)
@@ -331,6 +441,33 @@ public class Game{
         return new Wizard(slot, adventurers, enemies, team);
     }
   }
+  public static void outputResult(String str)
+  {
+    TextBox(10,4,38,6, str);
+  }
+  public static void outputResult(String str, boolean right)
+  {
+    int col = 2;
+    if (right)
+    {
+      col += 40;
+    }
+    TextBox(10,col,38,6, str);
+  }
+  public static void DrawExlir(int exlir, int darkExlir)
+  {
+    TextBox(17,4,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
+  }
+  public static void DrawExlir(int exlir, int darkExlir, boolean right)
+  {
+    int col = 2;
+    if (right)
+    {
+      col += 40;
+    }
+    TextBox(17,col,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
+  }
+
 
   public static void main (String[] args) {
 
@@ -341,7 +478,7 @@ public class Game{
 
     Text.reset();
     Text.showCursor();
-
+    run();
   }
 
 }
