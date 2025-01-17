@@ -61,7 +61,7 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
 | Attack | Tracking Shot: The archer shoots an arrow at the selected target which never misses. | 3 dmg | 2 elixir |
-| Special | Long Distance Shot: The archer fires an arrow randomly at the opponents. If the opponent is not directly in front of the archer, the arrow deals more damage and has a chance to inflict the bleeding effect. | 3 dmg if opponent is in front of the archer. 2x dmg if not in front. 50% chance to bleed, dealing 2 dmg at the end of each turn. | 5 dark elixir |
+| Special | Long Distance Shot: The archer fires an arrow randomly at the opponents. If the opponent is not directly in front of the archer, the arrow deals more damage and has a chance to inflict the bleeding effect. | 3 dmg if opponent is in front of the archer. 200% dmg if not in front. 50% chance to bleed, dealing 2 dmg at the end of each turn. | 5 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
 | Self Support | Evolution: The archer uses ragged tips for its arrows and increases its dark energy supply. | 30% chance for every arrow to inflict bleed, 2 dark elixir gained after every turn. | 6 dark elixir |
 
@@ -70,6 +70,6 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
 | Attack | Saber Swing: The PEKKA swings its saber at the enemy, dealing high damage. However, this can only be used every other turn. | 12 dmg | 2 elixir |
-| Special | Limb Breaker: The PEKKA swings at the opponents limbs. Attacking them the next turn deals 150% damage. | 10 dmg | 4 dark elixir |
+| Special | Limb Breaker: The PEKKA swings at the opponents limbs, shattering them. | 10 dmg, Attacking them the next turn deals 150% damage | 4 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
-| Self Support | Evolution: The PEKKA evolves, gaining a stat boost. Also, after every attack, the PEKKA heals two HP. | 1.25x dmg, +2 HP after every attack. | 6 dark elixir |
+| Self Support | Evolution: The PEKKA evolves, gaining a stat boost. Also, after every attack, the PEKKA heals two HP. | 125% dmg, +2 HP after every attack. | 6 dark elixir |
