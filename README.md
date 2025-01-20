@@ -17,11 +17,19 @@ Make a clear list of features that work/dont work
 
 ### Current Progress
 
-:x: Adventurer subclass implementation
+:white_check_mark: Barbarian Class Implementation
 
-:x: Game screen and move progression
+:white_check_mark: Wizard Class Implementation
 
-:x: Addons to adventurer class
+:ballot_box_with_check: Archer Class Implementation
+
+:white_check_mark: PEKKA Class Implementation
+
+:white_check_mark: Game Screen and Game Loop
+
+:ballot_box_with_check: Elixir and Dark Elixir Resource Implementation
+
+:ballot_box_with_check: Evolution Implementation
 
 ## Theme
 
