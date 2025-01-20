@@ -101,26 +101,7 @@ public class Game{
 
     drawText(line, row, col);
     TextBox(row + 1, col, width, height, text.length() > width ? text.substring(width) : "");
-}
-  //return a random adventurer (choose between all available subclasses)
-  //feel free to overload this method to allow specific names/stats.
-  // public static Adventurer createRandomAdventurer(){
-  //   return new CodeWarrior("Bob"+(int)(Math.random()*100));
-  // }
-
-  /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
-  *Should include Name HP and Special on 3 separate lines.
-  *Note there is one blank row reserved for your use if you choose.
-  *Format:
-  *Bob          Amy        Jun
-  *HP: 10       HP: 15     HP:19
-  *Caffeine: 20 Mana: 10   Snark: 1
-  * ***THIS ROW INTENTIONALLY LEFT BLANK***
-  */
-  public static void drawParty(ArrayList<Adventurer> party,int startRow){
-
   }
-
 
   //Use this to create a colorized number string based on the % compared to the max value.
   public static String colorByPercent(int hp, int maxHP){
@@ -138,10 +119,6 @@ public class Game{
     }
     return output;
   }
-
-
-
-
 
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
@@ -463,6 +440,7 @@ public class Game{
 
     quit();
   }
+
   public static Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team)
   {
     Random rand = new Random();
@@ -479,6 +457,7 @@ public class Game{
         return new Wizard(slot, adventurers, enemies, team);
     }
   }
+
   public static void outputResult(String str)
   {
     try {
@@ -488,6 +467,7 @@ public class Game{
     }
     TextBox(10,4,38,6, str);
   }
+
   public static void outputResult(String str, boolean right)
   {
     try {
@@ -502,10 +482,12 @@ public class Game{
     }
     TextBox(10,col,38,6, str);
   }
+
   public static void DrawExlir(int exlir, int darkExlir)
   {
     TextBox(17,4,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
   }
+
   public static void DrawExlir(int exlir, int darkExlir, boolean right)
   {
     int col = 2;
@@ -515,6 +497,7 @@ public class Game{
     }
     TextBox(17,col,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
   }
+
   public static void DrawTeam(String str, int slot, boolean right)
   {
     int col = 2;
@@ -523,16 +506,8 @@ public class Game{
     TextBox(30 + offset ,col,38,6,str);
   }
 
-
   public static void main (String[] args) {
 
-    Text.hideCursor();
-    Text.clear();
-
-    drawBackground();
-
-    Text.reset();
-    Text.showCursor();
     run();
   }
 

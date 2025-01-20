@@ -1,6 +1,6 @@
-import java.util.Random;
 import java.util.*;
 public abstract class Adventurer{
+
   private String name;
   private int HP,maxHP;
   public int evoDuration;
@@ -20,6 +20,7 @@ public abstract class Adventurer{
     BURN,
     BLEED
   }
+
   public Effect state = Effect.NONE;
 
   public void Tick()
@@ -62,6 +63,7 @@ public abstract class Adventurer{
     this.HP -= amount;
     CheckDeath();
   }
+
   private void CheckDeath()
   {
     if (this.HP <= 0)
@@ -70,6 +72,7 @@ public abstract class Adventurer{
       alive = false;
     }
   }
+
   public Adventurer(String name, int hp, int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team){
     this.name = name;
     this.HP = hp;
@@ -104,10 +107,12 @@ public abstract class Adventurer{
   public int getEvoDuration(){
     return evoDuration;
   }
+
   public int getSlot()
   {
     return slot;
   }
+
   private void setmaxHP(int newMax){
     maxHP = newMax;
   }
@@ -120,6 +125,7 @@ public abstract class Adventurer{
   private void setName(String s){
     this.name = s;
   }
+
   public void heal()
   {
     this.HP += 10;
@@ -128,9 +134,11 @@ public abstract class Adventurer{
       this.HP = maxHP;
     }
   }
+
   public static boolean chance (int percent)
   {
     Random rand = new Random();
     return (percent < rand.nextInt(100));
   }
+
 }

@@ -1,6 +1,8 @@
 import java.util.*;
 public class Wizard extends Adventurer{
+
   public int shield = 0;
+
   public void Tick()
   {
     if(evoDuration > 0)
@@ -43,7 +45,6 @@ public class Wizard extends Adventurer{
   {
     return ("Fireball");
   }
-
 
   public String attack(int other)
   {
@@ -101,10 +102,7 @@ public class Wizard extends Adventurer{
     {
       setHP(getHP() - amount);
     }
-    
   }
-
-
 
   public Wizard(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team){
 	  super("Wizard",  20, slot, adventurers, enemies, team);

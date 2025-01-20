@@ -3,26 +3,56 @@ public class Archer extends Adventurer{
 
   public void Tick()
   {
-	if(evoDuration > 0)
-	{
-    evoDuration--;
-    if( evoDuration == 0)
-    {
-      Game.outputResult(getName() + "'s evolution wore off.'", !good);
+  	if(evoDuration > 0)
+  	{
+      evoDuration--;
+      if( evoDuration == 0)
+      {
+        Game.outputResult(getName() + "'s evolution wore off.'", !good);
+      }
+
+  	}
+  	switch (state)
+  	{
+    	case BURN:
+        setHP(getHP() -2);
+      	break;
+    	case BLEED:
+        setHP(getHP() -2);
+      	break;
+    	default:
+      	break;
+  	}
+    if (getSlot() == 0) {
+      Game.drawText(getName(), 24, 2);
+      Game.drawText("HP: " + getHP(), 25, 2);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 26, 2);
     }
-  	
-	}
-	switch (state)
-	{
-  	case BURN:
-      setHP(getHP() -2);
-    	break;
-  	case BLEED:
-      setHP(getHP() -2);
-    	break;
-  	default:
-    	break;
-	}
+    if (getSlot() == 1) {
+      Game.drawText(getName(), 24, 29);
+      Game.drawText("HP: " + getHP(), 25, 29);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 26, 29);
+    }
+    if (getSlot() == 2) {
+      Game.drawText(getName(), 24, 56);
+      Game.drawText("HP: " + getHP(), 25, 56);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 26, 56);
+    }
+    if (getSlot() == 3) {
+      Game.drawText(getName(), 2, 2);
+      Game.drawText("HP: " + getHP(), 3, 2);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 4, 2);
+    }
+    if (getSlot() == 4) {
+      Game.drawText(getName(), 2, 29);
+      Game.drawText("HP: " + getHP(), 3, 29);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 4, 29);
+    }
+    if (getSlot() == 5) {
+      Game.drawText(getName(), 2, 56);
+      Game.drawText("HP: " + getHP(), 3, 56);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 4, 56);
+    }
   }
 
   //concrete method written using abstract methods.
@@ -95,9 +125,11 @@ public class Archer extends Adventurer{
   }
 
 
-  public Archer(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team){
+  public Archer(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team)
+  {
 	  super("Archer", 24, slot, adventurers, enemies, team);
     specialCost = 5;
     supportCost = 6;
   }
+
 }

@@ -1,7 +1,9 @@
 import java.util.*;
 public class Boss extends Adventurer{
+
   int attackTurn = -1;
   int lastHit;
+
   public void Tick()
   {
     if(evoDuration > 0)
@@ -32,8 +34,8 @@ public class Boss extends Adventurer{
 
   public void Evolve(int duration)
   {
-	evoDuration = duration;
-	Game.outputResult(getName() + " has evolved.", !good);
+  	evoDuration = duration;
+  	Game.outputResult(getName() + " has evolved.", !good);
   }
 
 
@@ -46,7 +48,6 @@ public class Boss extends Adventurer{
   {
     return ("Saber Swing");
   }
-
 
   public String attack(int other)
   {
@@ -109,9 +110,11 @@ public class Boss extends Adventurer{
 
     return("");
   }
+
   public Boss(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team){
 	  super("Pekka", 40, slot, adventurers, enemies, team);
      specialCost = 4;
      supportCost = 6;
   }
+  
 }

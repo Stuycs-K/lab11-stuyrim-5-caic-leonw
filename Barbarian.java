@@ -1,5 +1,6 @@
 import java.util.*;
 public class Barbarian extends Adventurer{
+
   public void Tick()
   {
     if(evoDuration > 0)
@@ -39,7 +40,6 @@ public class Barbarian extends Adventurer{
   {
     return ("Sword Swing");
   }
-
 
   public String attack(int other)
   {
@@ -102,4 +102,5 @@ public class Barbarian extends Adventurer{
      specialCost = 4;
      supportCost = 6;
   }
+
 }
