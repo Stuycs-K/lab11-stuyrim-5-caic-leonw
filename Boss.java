@@ -55,7 +55,7 @@ public class Boss extends Adventurer{
     if (attackTurn == 2)
     {
       Game.outputResult(getName() + " used " + getAttackName() + " on " + enemies.get(other).getName() + "!", !good);
-      double damage = 6;
+      double damage = 10;
       if (lastHit == other)
       {
         lastHit = -1;
@@ -95,7 +95,7 @@ public class Boss extends Adventurer{
   {
     Game.outputResult(getName() + " used " + getSpecialName() + ", weakening them!", !good);
     lastHit = other;
-    double damage = 10;
+    double damage = 14;
     if (lastHit == other)
     {
       lastHit = -1;
