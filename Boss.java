@@ -27,7 +27,7 @@ public class Boss extends Adventurer{
     {
       attackTurn++;
     }
-    Game.drawStats(getName(), getHP(), getEvoDuration(), good, getSlot(), alive);
+    Game.drawStats(getName(), getHP(), getmaxHP(), getEvoDuration(), good, getSlot(), alive);
   }
 
   //concrete method written using abstract methods.

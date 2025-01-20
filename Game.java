@@ -101,7 +101,7 @@ public class Game{
 
     drawText(line, row, col);
     TextBox(row + 1, col, width, height - 1, text.length() > width ? text.substring(width) : "");
-}
+  }
 
   //Use this to create a colorized number string based on the % compared to the max value.
   public static String colorByPercent(int hp, int maxHP){
@@ -110,12 +110,12 @@ public class Game{
     // under 25% : red
     // under 75% : yellow
     // otherwise : white
-    if (hp / maxHP < 0.25) {
-      Text.colorize(output, 31);
-    }else if (hp / maxHP < 0.75) {
-      Text.colorize(output, 33);
+    if (((double)hp / maxHP) < 0.25) {
+      output = Text.colorize(output, 31);
+    } else if (((double)hp / maxHP) < 0.75 && ((double)hp / maxHP) > 0.25) {
+      output = Text.colorize(output, 33);
     } else {
-      Text.colorize(output, 37);
+      output = Text.colorize(output, 37);
     }
     return output;
   }
@@ -155,13 +155,13 @@ public class Game{
     int turn = 0;
     String input = "";//blank to get into the main loop.
     Scanner in = new Scanner(System.in);
-    int exlir = 10;
-    int darkExlir = 10;
+    int elixir = 10;
+    int darkElixir = 10;
     int party = 3;
     boolean boss = false;
     boolean win = false;
-    int enemyExlir = 10;
-    int enemyDarkExlir = 10;
+    int enemyelixir = 10;
+    int enemydarkElixir = 10;
 
     //Draw the window border
     ArrayList<Adventurer> adventurers = new ArrayList<Adventurer>();
@@ -187,6 +187,7 @@ public class Game{
     }
     //You can add parameters to draw screen!
     drawBackground();//initial state.
+    Drawelixir(elixir, darkElixir);
 
     //Main loop
 
@@ -207,7 +208,7 @@ public class Game{
         {
           if(input.equals("attack") || input.equals("a"))
           {
-            if (exlir > 2)
+            if (elixir > 2)
             {
               out = "Who should " + adventurers.get(whichPlayer) + " target: 0/1/2";
               outputResult(out);
@@ -215,14 +216,13 @@ public class Game{
               int target = Integer.parseInt(input);
               if (target < enemies.size())
               {
-                exlir -= 2;
+                elixir -= 2;
                 adventurers.get(whichPlayer).attack(target);
               }
-
             }
             else
             {
-              out = "Failed! Not enough exlir.";
+              out = "Failed! Not enough elixir.";
               outputResult(out);
             }
           }
@@ -231,27 +231,26 @@ public class Game{
           else if(input.equals("special") || input.equals("sp"))
 
           {
-            if (darkExlir > adventurers.get(whichPlayer).specialCost)
+            if (darkElixir > adventurers.get(whichPlayer).specialCost)
             {
               out = "Who should " + adventurers.get(whichPlayer) + " target: 0/1/2";
               outputResult(out);
               input = userInput(in);
               int target = Integer.parseInt(input);
-              exlir -= adventurers.get(whichPlayer).specialCost;
               if (target < enemies.size())
               {
-                exlir -= adventurers.get(whichPlayer).specialCost;
+                darkElixir -= adventurers.get(whichPlayer).specialCost;
                 adventurers.get(whichPlayer).specialAttack(target);
               }
             }
             else
             {
-              out = "Failed! Not enough exlir.";
+              out = "Failed! Not enough dark elixir.";
               outputResult(out);
             }
           }
 
-          else if(input.equals("su ") || input.equals("support "))
+          else if(input.equals("su") || input.equals("support"))
 
           {
             out = "Who should " + adventurers.get(whichPlayer) + " target: 0/1/2";
@@ -260,42 +259,42 @@ public class Game{
             int target = Integer.parseInt(input);
             if(target != whichPlayer && target < adventurers.size())
             {
-              if(exlir > 3)
+              if(elixir > 3)
               {
-                exlir -=3;
+                elixir -=3;
                 adventurers.get(Integer.parseInt(input)).heal();
               }
               else
               {
-                out = "Failed! Not enough exlir.";
+                out = "Failed! Not enough elixir.";
                 outputResult(out);
               }
             }
-            else if (darkExlir > 6)
+            else if (darkElixir > 6)
             {
-              exlir -= 6;
+              darkElixir -= 6;
               adventurers.get(whichPlayer).Evolve(3);
+              adventurers.get(whichPlayer).Tick();
             }
             else
             {
-              out = "Failed! Not enough exlir.";
+              out = "Failed! Not enough dark elixir.";
               outputResult(out);
             }
-          }
-
-          else
-          {
-            out = "Invalid Input. Please re-enter.";
-            outputResult(out);
           }
 
         }
 
         //You should decide when you want to re-ask for user input
         //If no errors:
-        adventurers.get(whichPlayer).Tick();
+        for (Adventurer enemy : enemies) {
+          enemy.Tick();
+        }
+        for (Adventurer player : adventurers) {
+          player.Tick();
+        }
         whichPlayer++;
-        DrawExlir(exlir, darkExlir);
+        Drawelixir(elixir, darkElixir);
 
 
         if(whichPlayer < adventurers.size()){
@@ -307,9 +306,9 @@ public class Game{
         {
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          preprompt = "press enter to see monster's turn";
-          exlir += 10;
-          darkExlir += 5;
+          preprompt = "Press enter to see monster's turn";
+          elixir += 10;
+          darkElixir += 5;
           partyTurn = false;
           whichOpponent = 0;
         }
@@ -318,7 +317,7 @@ public class Game{
       else{
         if (enemies.get(whichOpponent).alive)
         {
-          preprompt = "press enter to see next turn";
+          preprompt = "Press enter to see next turn";
 
           Random random = new Random();
           int c = random.nextInt(3);
@@ -331,14 +330,14 @@ public class Game{
           int k = trueIndices.get(random.nextInt(trueIndices.size()));
           if(c == 0)
           {
-            if (enemyExlir > 2)
+            if (enemyelixir > 2)
             {
               enemies.get(whichOpponent).attack(k);
-              enemyExlir-= 2;
+              enemyelixir-= 2;
             }
             else
             {
-              out = "Failed! Not enough exlir.";
+              out = "Failed! Not enough elixir.";
             }
           }
 
@@ -346,14 +345,14 @@ public class Game{
           else if(c == 1)
 
           {
-            if (enemyDarkExlir> enemies.get(whichOpponent).specialCost)
+            if (enemydarkElixir> enemies.get(whichOpponent).specialCost)
             {
               enemies.get(whichOpponent).specialAttack(k);
-              enemyDarkExlir-= enemies.get(whichOpponent).specialCost;
+              enemydarkElixir-= enemies.get(whichOpponent).specialCost;
             }
             else
             {
-              out = "Failed! Not enough exlir.";
+              out = "Failed! Not enough dark elixir.";
               outputResult(out, true);
             }
           }
@@ -363,32 +362,38 @@ public class Game{
             k = random.nextInt(enemies.size());
             if(k != whichOpponent)
             {
-              if(enemyExlir> 3)
+              if(enemyelixir> 3)
               {
-                enemyExlir-=3;
+                enemyelixir-=3;
                 enemies.get(k).heal();
               }
               else
               {
-                out = "Failed! Not enough exlir.";
+                out = "Failed! Not enough elixir.";
                 outputResult(out, true);
               }
             }
-            else if (enemyDarkExlir> 6)
+            else if (enemydarkElixir> 6)
             {
-              enemyExlir-= 6;
+              enemydarkElixir-= 6;
               enemies.get(whichOpponent).Evolve(3);
             }
             else
             {
-              out = "Failed! Not enough exlir.";
+              out = "Failed! Not enough dark elixir.";
               outputResult(out, true);
             }
           }
         }
-        enemies.get(whichOpponent).Tick();
+
+        for (Adventurer player : adventurers) {
+          player.Tick();
+        }
+        for (Adventurer enemy : enemies) {
+          enemy.Tick();
+        }
         whichOpponent++;
-        DrawExlir(enemyExlir, enemyDarkExlir, true);
+        Drawelixir(enemyelixir, enemydarkElixir, true);
       }//end of one enemy.
 
       //modify this if statement.
@@ -399,8 +404,8 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        enemyExlir += 10;
-        enemyDarkExlir += 5;
+        enemyelixir += 10;
+        enemydarkElixir += 5;
         preprompt = "Enter command for "+adventurers.get(whichPlayer)+": (a)ttack/(sp)ecial/(su)pport/(q)uit";
         boolean end = true;
         for (int i = 0; i < enemies.size(); i++)
@@ -433,6 +438,7 @@ public class Game{
       }
 
       drawBackground();
+      Drawelixir(elixir, darkElixir);
     }
 
     quit();
@@ -479,19 +485,19 @@ public class Game{
     TextBox(10,col,38,6, str);
   }
 
-  public static void DrawExlir(int exlir, int darkExlir)
+  public static void Drawelixir(int elixir, int darkElixir)
   {
-    TextBox(17,4,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
+    TextBox(17,4,30,6, "Elixir: " + elixir + ". Dark Elixir: " + darkElixir);
   }
 
-  public static void DrawExlir(int exlir, int darkExlir, boolean right)
+  public static void Drawelixir(int elixir, int darkElixir, boolean right)
   {
     int col = 2;
     if (right)
     {
       col += 40;
     }
-    TextBox(17,col,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
+    TextBox(17,col,30,6, "Elixir: " + elixir + ". Dark Elixir: " + darkElixir);
   }
 
   public static void DrawTeam(String str, int slot, boolean right)
@@ -502,18 +508,17 @@ public class Game{
     TextBox(30 + offset ,col,38,6,str);
   }
 
-  public static void drawStats(String name, int hp, int evo, boolean good, int slot, boolean alive)
+  public static void drawStats(String name, int hp, int maxHP, int evo, boolean good, int slot, boolean alive)
   {
     int thing = slot * 27;
     int offset = good? 0:-22;
     if (alive)
     {
       Game.drawText(name, 24 + offset, 2 + thing);
-      Game.drawText("HP: " + hp, 25 + offset, 2 + thing);
+      Game.drawText("HP: " + colorByPercent(hp, maxHP), 25 + offset, 2 + thing);
       Game.drawText("Evo Duration: " + evo, 26 + offset, 2 + thing);
     }
     else
-
     {
       Game.drawText(name + " is dead.", 24 + offset, 2 + thing);
     }

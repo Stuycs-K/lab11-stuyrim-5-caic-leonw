@@ -23,7 +23,7 @@ public class Archer extends Adventurer{
     	default:
       	break;
   	}
-    Game.drawStats(getName(), getHP(), getEvoDuration(), good, getSlot(), alive);
+    Game.drawStats(getName(), getHP(), getmaxHP(), getEvoDuration(), good, getSlot(), alive);
   }
 
   //concrete method written using abstract methods.
