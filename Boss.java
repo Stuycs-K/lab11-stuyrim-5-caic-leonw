@@ -27,6 +27,36 @@ public class Boss extends Adventurer{
     {
       attackTurn++;
     }
+    if (getSlot() == 0) {
+      Game.drawText(getName(), 24, 2);
+      Game.drawText("HP: " + getHP(), 25, 2);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 26, 2);
+    }
+    if (getSlot() == 1) {
+      Game.drawText(getName(), 24, 29);
+      Game.drawText("HP: " + getHP(), 25, 29);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 26, 29);
+    }
+    if (getSlot() == 2) {
+      Game.drawText(getName(), 24, 56);
+      Game.drawText("HP: " + getHP(), 25, 56);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 26, 56);
+    }
+    if (getSlot() == 3) {
+      Game.drawText(getName(), 2, 2);
+      Game.drawText("HP: " + getHP(), 3, 2);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 4, 2);
+    }
+    if (getSlot() == 4) {
+      Game.drawText(getName(), 2, 29);
+      Game.drawText("HP: " + getHP(), 3, 29);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 4, 29);
+    }
+    if (getSlot() == 5) {
+      Game.drawText(getName(), 2, 56);
+      Game.drawText("HP: " + getHP(), 3, 56);
+      Game.drawText("Evo Duration: " + getEvoDuration(), 4, 56);
+    }
   }
 
   //concrete method written using abstract methods.
@@ -116,5 +146,5 @@ public class Boss extends Adventurer{
      specialCost = 4;
      supportCost = 6;
   }
-  
+
 }

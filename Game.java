@@ -88,7 +88,7 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text) {
-    if (row < height) {
+    if (row >= height) {
         return;
     }
 
@@ -100,6 +100,8 @@ public class Game{
     }
 
     drawText(line, row, col);
+
+    // Recursively draw the next line of text
     TextBox(row + 1, col, width, height, text.length() > width ? text.substring(width) : "");
   }
 
