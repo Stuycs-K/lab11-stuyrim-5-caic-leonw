@@ -88,19 +88,30 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text) {
-    if (height <= 0 || text.isEmpty()) {
-        return;
+    if (height <= 0 || text.isEmpty())
+    {
+      return;
     }
 
     String line;
-    if (text.length() < width) {
-        line = text + " ".repeat(width - text.length());
-    } else {
-        line = text.substring(0, width);
+    if (text.length() < width)
+    {
+      line = text + " ".repeat(width - text.length());
+    }
+    else
+    {
+      line = text.substring(0, width);
     }
 
     drawText(line, row, col);
-    TextBox(row + 1, col, width, height - 1, text.length() > width ? text.substring(width) : "");
+    if (text.length() > width)
+    {
+      TextBox(row + 1, col, width, height - 1, text.substring(width));
+    }
+    else
+    {
+      TextBox(row + 1, col, width, height - 1, " ");
+    }
   }
 
   //Use this to create a colorized number string based on the % compared to the max value.
@@ -121,19 +132,19 @@ public class Game{
   }
 
   public static String userInput(Scanner in){
-      //Move cursor to prompt location
+    
+    //Move cursor to prompt location
+    Text.go(15, 3);
 
-      //show cursor
+    //show cursor
+    Text.showCursor();
+    String input = in.nextLine();
 
-      Text.go(15, 3);
-      Text.showCursor();
-      String input = in.nextLine();
+    //clear the text that was written
 
-      //clear the text that was written
+    TextBox(10,2,38,6, " ");
 
-      TextBox(10,2,38,6, " ");
-
-      return input;
+    return input;
   }
 
   public static void quit(){
@@ -185,9 +196,11 @@ public class Game{
       adventurers.add(rand(i, adventurers, enemies, true));
       adventurers.get(i).Tick();
     }
+
     //You can add parameters to draw screen!
     drawBackground();//initial state.
     Drawelixir(elixir, darkElixir);
+    Drawelixir(elixir, darkElixir, true);
 
     //Main loop
 
@@ -439,6 +452,7 @@ public class Game{
 
       drawBackground();
       Drawelixir(elixir, darkElixir);
+      Drawelixir(elixir, darkElixir, true);
     }
 
     quit();
@@ -487,7 +501,7 @@ public class Game{
 
   public static void Drawelixir(int elixir, int darkElixir)
   {
-    TextBox(17,4,30,6, "Elixir: " + elixir + ". Dark Elixir: " + darkElixir);
+    TextBox(17,2,30,6, "Elixir: " + elixir + ". Dark Elixir: " + darkElixir);
   }
 
   public static void Drawelixir(int elixir, int darkElixir, boolean right)
