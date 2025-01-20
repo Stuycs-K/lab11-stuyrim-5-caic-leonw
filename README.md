@@ -23,7 +23,7 @@ Make a clear list of features that work/dont work
 
 :ballot_box_with_check: Archer Class Implementation
 
-:white_check_mark: PEKKA Class Implementation
+:white_check_mark: PEKKA (Boss) Class Implementation
 
 :white_check_mark: Game Screen and Game Loop
 
@@ -73,7 +73,7 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
 | Self Support | Evolution: The archer uses ragged tips for its arrows and increases its dark energy supply. | 30% chance for every arrow to inflict bleed, 2 dark elixir gained after every turn. | 6 dark elixir |
 
-### PEKKA Abilities
+### PEKKA (Boss) Abilities
 
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
