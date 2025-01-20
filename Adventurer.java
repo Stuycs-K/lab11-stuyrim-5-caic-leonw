@@ -68,7 +68,6 @@ public abstract class Adventurer{
   {
     if (this.HP <= 0)
     {
-      System.out.println(getName() + " Died.");
       alive = false;
     }
   }

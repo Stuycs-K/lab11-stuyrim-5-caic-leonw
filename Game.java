@@ -88,7 +88,7 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text) {
-    if (row >= height) {
+    if (height <= 0 || text.isEmpty()) {
         return;
     }
 
@@ -100,10 +100,27 @@ public class Game{
     }
 
     drawText(line, row, col);
+    TextBox(row + 1, col, width, height - 1, text.length() > width ? text.substring(width) : "");
+}
+  //return a random adventurer (choose between all available subclasses)
+  //feel free to overload this method to allow specific names/stats.
+  // public static Adventurer createRandomAdventurer(){
+  //   return new CodeWarrior("Bob"+(int)(Math.random()*100));
+  // }
 
-    // Recursively draw the next line of text
-    TextBox(row + 1, col, width, height, text.length() > width ? text.substring(width) : "");
+  /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
+  *Should include Name HP and Special on 3 separate lines.
+  *Note there is one blank row reserved for your use if you choose.
+  *Format:
+  *Bob          Amy        Jun
+  *HP: 10       HP: 15     HP:19
+  *Caffeine: 20 Mana: 10   Snark: 1
+  * ***THIS ROW INTENTIONALLY LEFT BLANK***
+  */
+  public static void drawParty(ArrayList<Adventurer> party,int startRow){
+
   }
+
 
   //Use this to create a colorized number string based on the % compared to the max value.
   public static String colorByPercent(int hp, int maxHP){
@@ -112,15 +129,12 @@ public class Game{
     // under 25% : red
     // under 75% : yellow
     // otherwise : white
-    if ((hp / maxHP) < 0.25) {
-      Text.colorize(output, 31);
-    } else if ((hp / maxHP) < 0.75) {
-      Text.colorize(output, 33);
-    } else {
-      Text.colorize(output, 37);
-    }
     return output;
   }
+
+
+
+
 
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
@@ -140,6 +154,7 @@ public class Game{
 
       //show cursor
 
+      Text.go(15, 3);
       String input = in.nextLine();
 
       //clear the text that was written
@@ -150,7 +165,7 @@ public class Game{
   public static void quit(){
     Text.reset();
     Text.showCursor();
-    Text.go(32,1);
+    Text.go(30,1);
   }
 
   public static void run(){
@@ -181,17 +196,20 @@ public class Game{
     if (boss)
     {
       enemies.add(new Boss(0, enemies, adventurers, false));
+      enemies.get(0).Tick();
     }
     else
     {
       for (int i = 0; i < 3; i++)
       {
         enemies.add(rand(i, enemies, adventurers, false));
+        enemies.get(i).Tick();
       }
     }
     for (int i = 0; i < 3; i++)
     {
       adventurers.add(rand(i, adventurers, enemies, true));
+      adventurers.get(i).Tick();
     }
     //You can add parameters to draw screen!
     drawScreen();//initial state.
@@ -205,7 +223,7 @@ public class Game{
     {
       //Read user input
       outputResult(preprompt, !partyTurn);
-      Text.go(29, 1);
+
       input = userInput(in);
 
       String out = "";
@@ -219,7 +237,6 @@ public class Game{
             {
               out = "Who should " + adventurers.get(whichPlayer) + " target";
               outputResult(out);
-              Text.go(29, 1);
               input = userInput(in);
               int target = Integer.parseInt(input);
               if (target < enemies.size())
@@ -244,7 +261,6 @@ public class Game{
             {
               out = "Who should " + adventurers.get(whichPlayer) + " target";
               outputResult(out);
-              Text.go(29, 1);
               input = userInput(in);
               int target = Integer.parseInt(input);
               exlir -= adventurers.get(whichPlayer).specialCost;
@@ -266,7 +282,6 @@ public class Game{
           {
             out = "Who should " + adventurers.get(whichPlayer) + " target";
             outputResult(out);
-            Text.go(29, 1);
             input = userInput(in);
             int target = Integer.parseInt(input);
             if(target != whichPlayer && target < adventurers.size())
@@ -293,10 +308,6 @@ public class Game{
               outputResult(out);
             }
           }
-        }
-        else
-        {
-          outputResult(adventurers.get(whichPlayer).getName() + " is dead.");
         }
         //You should decide when you want to re-ask for user input
         //If no errors:
@@ -387,10 +398,6 @@ public class Game{
             }
           }
         }
-        else
-        {
-          outputResult(enemies.get(whichOpponent).getName() + " is dead.", true);
-        }
         enemies.get(whichOpponent).Tick();
         whichOpponent++;
         DrawExlir(enemyExlir, enemyDarkExlir, true);
@@ -442,7 +449,6 @@ public class Game{
 
     quit();
   }
-
   public static Adventurer rand(int slot, ArrayList<Adventurer> adventurers, ArrayList<Adventurer> enemies, boolean team)
   {
     Random rand = new Random();
@@ -459,21 +465,19 @@ public class Game{
         return new Wizard(slot, adventurers, enemies, team);
     }
   }
-
   public static void outputResult(String str)
   {
     try {
-      Thread.sleep(1000);
+      Thread.sleep(500);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
     TextBox(10,4,38,6, str);
   }
-
   public static void outputResult(String str, boolean right)
   {
     try {
-      Thread.sleep(1000);
+      Thread.sleep(500);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
@@ -484,12 +488,10 @@ public class Game{
     }
     TextBox(10,col,38,6, str);
   }
-
   public static void DrawExlir(int exlir, int darkExlir)
   {
     TextBox(17,4,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
   }
-
   public static void DrawExlir(int exlir, int darkExlir, boolean right)
   {
     int col = 2;
@@ -499,7 +501,6 @@ public class Game{
     }
     TextBox(17,col,38,6, "Exlir: " + exlir + ". Dark Exlir: " + darkExlir);
   }
-
   public static void DrawTeam(String str, int slot, boolean right)
   {
     int col = 2;
@@ -507,9 +508,35 @@ public class Game{
     int offset = right? -10 : 0;
     TextBox(30 + offset ,col,38,6,str);
   }
+  public static void drawStats(String name, int hp, int evo, boolean good, int slot, boolean alive)
+  {
+    int thing = slot * 27;
+    int offset = good? 0:-22;
+    if (alive)
+    {
+      Game.drawText(name, 24 + offset, 2 + thing);
+      Game.drawText("HP: " + hp, 25 + offset, 2 + thing);
+      Game.drawText("Evo Duration: " + evo, 26 + offset, 2 + thing);
+    }
+    else
+    
+    {
+      Game.drawText(name + " is dead.", 24 + offset, 2 + thing);
+    }
+
+  }
+
+
 
   public static void main (String[] args) {
 
+    Text.hideCursor();
+    Text.clear();
+
+    drawBackground();
+
+    Text.reset();
+    Text.showCursor();
     run();
   }
 
