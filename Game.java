@@ -340,7 +340,13 @@ public class Game{
 
           Random random = new Random();
           int c = random.nextInt(3);
-          int k = random.nextInt(adventurers.size());
+          ArrayList<Integer> trueIndices = new ArrayList<>();
+          for (int i = 0; i < adventurers.size(); i++) {
+              if (adventurers.get(i).alive) {
+                  trueIndices.add(i);
+              }
+          }
+          int k = trueIndices.get(random.nextInt(trueIndices.size()));
           if(c == 0)
           {
             if (enemyExlir > 2)

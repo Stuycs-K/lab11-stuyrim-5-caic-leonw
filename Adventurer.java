@@ -44,7 +44,7 @@ public abstract class Adventurer{
   public void Evolve(int duration)
   {
     evoDuration = duration;
-    System.out.println(getName() + " has evolved.");
+    Game.outputResult(getName() + " has evolved.");
   }
 
   public abstract String getSpecialName();
