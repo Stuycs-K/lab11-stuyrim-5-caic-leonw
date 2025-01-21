@@ -78,6 +78,6 @@ Our game will be based on the mobile video game Clash of Clans. We will be using
 | Abilities | Description | Damage | Elixir Used |
 | :-------: | :---------: | :----: | :---------: |
 | Attack | Saber Swing: The PEKKA swings its saber at the enemy, dealing high damage. However, this can only be used every other turn. | 12 dmg | 2 elixir |
-| Special | Limb Breaker: The PEKKA swings at the opponents limbs. Attacking them the next turn deals 150% damage. | 10 dmg | 4 dark elixir |
+| Special | Limb Breaker: The PEKKA swings at the opponents limbs. Attacking them the next turn deals 150% damage. | 14 dmg | 4 dark elixir |
 | Ally Support | Heal: A heal spell is cast on the targeted ally. | N/A | 3 elixir |
 | Self Support | Evolution: The PEKKA evolves, gaining a stat boost. Also, after every attack, the PEKKA heals two HP. | 125% dmg, +2 HP after every attack. | 6 dark elixir |
